@@ -7,6 +7,7 @@ class AppKernel extends Kernel
 {
     public function registerBundles()
     {
+        // symfony standard
         $bundles = array(
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new Symfony\Bundle\SecurityBundle\SecurityBundle(),
@@ -18,6 +19,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
         );
         
+        // development or integration
         if( in_array($this->getEnvironment(), array('dev', 'test')) )
         {
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
