@@ -13,3 +13,6 @@ parameters:
     
     locale: fr
     secret: SeriouslyYouHaveToChangeIt!
+    
+    swiftmailer.delivery_address: me@example.com
+    
