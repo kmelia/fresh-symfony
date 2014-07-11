@@ -1,5 +1,5 @@
 imports:
-    - { resource: parameters.yml }
+    - { resource: @KmeliaFreshBundle/Resources/config/parameters.yml }
     - { resource: security.yml }
 
 framework:
