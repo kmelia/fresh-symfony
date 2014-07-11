@@ -1,0 +1,4 @@
+home:
+    pattern: /
+    defaults: { _controller: "KmeliaFreshBundle:Homepage:homepage" }
+    requirements: { _method: GET }

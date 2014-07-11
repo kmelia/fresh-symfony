@@ -19,6 +19,9 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
         );
         
+        // src
+        $bundles[] = new Kmelia\FreshBundle\KmeliaFreshBundle();
+        
         // development or integration
         if( in_array($this->getEnvironment(), array('dev', 'test')) )
         {
