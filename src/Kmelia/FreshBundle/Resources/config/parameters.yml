@@ -1,11 +1,4 @@
 parameters:
-    database_driver:   pdo_mysql
-    database_host:     ~
-    database_port:     ~
-    database_name:     ~
-    database_user:     ~
-    database_password: ~
-    
     mailer_transport: mail
     mailer_host:      ~
     mailer_user:      ~
@@ -13,6 +6,3 @@ parameters:
     
     locale: fr
     secret: SeriouslyYouHaveToChangeIt!
-    
-    swiftmailer.delivery_address: me@example.com
-    
