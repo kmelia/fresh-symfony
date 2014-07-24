@@ -20,7 +20,7 @@ Executing Unit tests
 --------------------
 [Fresh Symfony][1] embed [phpunit 4.x release][5] in developement.
 
-To run tests
+To run tests:
 ```bash
 ./bin/phpunit -c app/
 ```
