@@ -16,9 +16,6 @@ Then, run the install command:
 php composer.phar --prefer-dist install
 ```
 
-  [1]: https://bitbucket.org/kmelia/fresh-symfony
-  [2]: http://getcomposer.org/
-
 Executing Unit tests
 --------------------
 
@@ -28,6 +25,10 @@ To run tests
 ./bin/phpunit -c app/
 ```
 
-To create tests follow symfony documentation : http://symfony.com/fr/doc/current/book/testing.html
+To create tests follow [symfony documentation][3]
 
 Or copy paste sample into your bundle at path : src/Bundle/Kmelia/FreshBundle/Tests/* to src/Bundle/<your_name>/<your_bundle_name>/Tests/
+
+  [1]: https://bitbucket.org/kmelia/fresh-symfony
+  [2]: http://getcomposer.org/
+  [3]: http://symfony.com/fr/doc/current/book/testing.html
