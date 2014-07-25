@@ -10,8 +10,32 @@ class BaseFunctionalTest extends WebTestCase
     {
         $client = static::createClient();
         
-        $crawler = $client->request('GET', '/');
+        $crawler  = $client->request('GET', '/');
+        $response = $client->getResponse();
         
-        $this->assertGreaterThan(0, $crawler->filter('html:contains("fresh")')->count());
+        // content
+        $this->assertGreaterThan(0, $crawler->filter('html:contains("fresh")')->count(), 'Word "fresh"');
+        
+        // headers
+        $this->assertTrue($response->isOk(), 'Http code 200');
+        $this->assertTrue($response->headers->contains('Content-Type', 'text/html; charset=UTF-8'), 'Html utf-8 page');
+        $this->assertTrue($response->headers->hasCacheControlDirective('max-age'), 'Cache control max-age');
+        $this->assertTrue($response->headers->hasCacheControlDirective('s-maxage'), 'Cache control s-maxage');
+        $this->assertTrue($response->headers->hasCacheControlDirective('must-revalidate'), 'Cache control must-revalidate');
+        $this->assertTrue($response->headers->has('Expires'), 'Header expires');
+    }
+    
+    public function testNoHttpCacheHomepage()
+    {
+        $client = static::createClient();
+        
+        $crawler  = $client->request('GET', '/no-http-cache');
+        $response = $client->getResponse();
+        
+        // headers
+        $this->assertTrue($response->isOk(), 'Http code 200');
+        $this->assertFalse($response->isCacheable(), 'Response cacheable');
+        $this->assertTrue($response->headers->contains('Cache-Control', 'no-cache'), 'Header cache control no-cache');
+        $this->assertFalse($response->headers->has('Expires'), 'Header expires');
     }
 }
