@@ -2,7 +2,7 @@
 
 namespace Kmelia\FreshBundle\Controller;
 
-class HomepageController extends AbstractController
+class HomepageController extends KmeliaController
 {
     public function homepageAction()
     {
