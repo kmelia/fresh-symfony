@@ -10,4 +10,9 @@ class BaseTest extends \PHPUnit_Framework_TestCase
         
         $this->assertEquals(2, $result);
     }
+    
+    public function testFile()
+    {
+        $this->assertFileExists('./vendor/autoload.php');
+    }
 }
