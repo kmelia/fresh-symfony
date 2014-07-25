@@ -4,7 +4,7 @@ Provides a [Fresh Symfony][1] to start your application quickly.
 
 Getting started
 ---------------
-Download the [latest stable release (tar.gz)][2] inherited from [Symfony 2.3][3]
+Download the [**latest stable release** [tar.gz]][2] inherited from [Symfony 2.3][3]
 
 If you don't have [Composer][4] yet, run the following command:
 ```bash
@@ -16,6 +16,8 @@ Then, run the following commands:
 php composer.phar --prefer-dist install
 php app/console --env=dev assets:install web --symlink --relative
 ```
+
+That's it!
 
 Executing Unit tests
 --------------------
