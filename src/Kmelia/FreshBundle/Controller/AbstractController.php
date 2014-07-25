@@ -9,7 +9,7 @@ abstract class AbstractController extends Controller
 {
     private $responseHandlers = array();
     
-    protected function addHandler(Handler\ResponseHandler $responseHandler)
+    protected function addResponseHandler(Handler\ResponseHandler $responseHandler)
     {
         $this->responseHandlers[] = $responseHandler;
     }
@@ -17,7 +17,7 @@ abstract class AbstractController extends Controller
     /**
      * Remove each handler which is same as the handler passed
      */
-    protected function removeHandlers(Handler\ResponseHandler $responseHandlerToRemove)
+    protected function removeResponseHandlers(Handler\ResponseHandler $responseHandlerToRemove)
     {
         foreach($this->responseHandlers as $index => $responseHandler)
         {

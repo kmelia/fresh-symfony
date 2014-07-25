@@ -9,6 +9,6 @@ abstract class KmeliaController extends AbstractController
     public function __construct()
     {
         // add http cache handler
-        $this->addHandler(new Handler\HttpCacheResponseHandler());
+        $this->addResponseHandler(new Handler\HttpCacheResponseHandler());
     }
 }
