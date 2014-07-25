@@ -11,9 +11,10 @@ If you don't have [Composer][4] yet, run the following command:
 curl -s http://getcomposer.org/installer | php
 ```
 
-Then, run the install command:
+Then, run the following commands:
 ```bash
 php composer.phar --prefer-dist install
+php app/console --env=dev assets:install web --symlink --relative
 ```
 
 Executing Unit tests
