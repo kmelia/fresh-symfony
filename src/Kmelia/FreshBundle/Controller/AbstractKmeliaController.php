@@ -4,7 +4,7 @@ namespace Kmelia\FreshBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-abstract class KmeliaController extends AbstractController
+abstract class AbstractKmeliaController extends AbstractController
 {
     public function __construct()
     {
