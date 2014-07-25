@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class BaseFunctionalTest extends WebTestCase
 {
-    public function testIndex()
+    public function testHomepage()
     {
         $client = static::createClient();
         
