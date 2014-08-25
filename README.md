@@ -32,7 +32,7 @@ To create tests follow [Symfony documentation][6] or copy paste sample into your
 
 
   [1]: https://bitbucket.org/kmelia/fresh-symfony
-  [2]: https://bitbucket.org/kmelia/fresh-symfony/get/2.3.x-0.1.tar.gz
+  [2]: https://bitbucket.org/kmelia/fresh-symfony/get/2.3.x-0.2.tar.gz
   [3]: https://github.com/symfony/symfony-standard/tree/2.3
   [4]: http://getcomposer.org/
   [5]: http://phpunit.de/manual/current/en/
