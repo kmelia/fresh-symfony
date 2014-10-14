@@ -1,5 +1,7 @@
 Fresh Symfony
 =============
+[![Build Status](https://magnum-ci.com/status/b9d4cccf813ad43c794cbb822e8f2f9c.png)](https://magnum-ci.com/public/6c526f21990a8688e44d/builds)
+
 Provides a [Fresh Symfony][1] to start your application quickly.
 
 Getting started
