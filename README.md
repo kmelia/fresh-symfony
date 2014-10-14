@@ -19,6 +19,8 @@ php composer.phar --prefer-dist install
 php app/console --env=dev assets:install web --symlink --relative
 ```
 
+Finally, [configure your project][7].
+
 That's it!
 
 Executing Unit tests
@@ -39,3 +41,4 @@ To create tests follow [Symfony documentation][6] or copy paste sample into your
   [4]: http://getcomposer.org/
   [5]: http://phpunit.de/manual/current/en/
   [6]: http://symfony.com/fr/doc/current/book/testing.html
+  [7]: src/master/CONFIGURE.md
