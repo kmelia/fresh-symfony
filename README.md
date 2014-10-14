@@ -19,7 +19,7 @@ php composer.phar --prefer-dist install
 php app/console --env=dev assets:install web --symlink --relative
 ```
 
-**4.**Finally, [configure your project][7].
+**4.** Finally, [configure your project][7].
 
 That's it!
 
