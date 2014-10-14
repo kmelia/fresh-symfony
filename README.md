@@ -6,20 +6,20 @@ Provides a [Fresh Symfony][1] to start your application quickly.
 
 Getting started
 ---------------
-Download the [**latest stable release** [tar.gz]][2] inherited from [Symfony 2.3][3]
+**1.** Download the [**latest stable release** [tar.gz]][2] inherited from [Symfony 2.3][3]
 
-If you don't have [Composer][4] yet, run the following command:
+**2.** If you don't have [Composer][4] yet, run the following command:
 ```bash
 curl -s http://getcomposer.org/installer | php
 ```
 
-Then, run the following commands:
+**3.** Then, run the following commands:
 ```bash
 php composer.phar --prefer-dist install
 php app/console --env=dev assets:install web --symlink --relative
 ```
 
-Finally, [configure your project][7].
+**4.**Finally, [configure your project][7].
 
 That's it!
 
