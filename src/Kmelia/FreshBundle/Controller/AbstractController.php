@@ -19,8 +19,7 @@ abstract class AbstractController extends Controller
      */
     protected function removeResponseHandlers(Handler\ResponseHandler $responseHandlerToRemove)
     {
-        foreach($this->responseHandlers as $index => $responseHandler)
-        {
+        foreach ($this->responseHandlers as $index => $responseHandler) {
             if ($responseHandler instanceof $responseHandlerToRemove) {
                 unset($this->responseHandlers[$index]);
             }
