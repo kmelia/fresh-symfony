@@ -21,8 +21,7 @@ abstract class AbstractController extends Controller
     {
         foreach($this->responseHandlers as $index => $responseHandler)
         {
-            if( $responseHandler instanceof $responseHandlerToRemove )
-            {
+            if ($responseHandler instanceof $responseHandlerToRemove) {
                 unset($this->responseHandlers[$index]);
             }
         }
@@ -36,8 +35,7 @@ abstract class AbstractController extends Controller
     {
         $response = parent::render($view, $parameters, $response);
         
-        foreach($this->responseHandlers as $responseHandler)
-        {
+        foreach ($this->responseHandlers as $responseHandler) {
             $response = $responseHandler->handleResponse($response);
         }
         
