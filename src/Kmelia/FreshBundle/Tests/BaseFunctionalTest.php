@@ -29,7 +29,7 @@ class BaseFunctionalTest extends WebTestCase
     {
         $client = static::createClient();
         
-        $crawler  = $client->request('GET', '/no-http-cache');
+        $client->request('GET', '/no-http-cache');
         $response = $client->getResponse();
         
         // headers
