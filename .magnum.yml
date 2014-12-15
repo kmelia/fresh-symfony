@@ -1,0 +1,17 @@
+before_install:
+  # composer configuration
+  - export COMPOSER_CACHE_DIR=.composer-cache/
+  - composer config github-oauth.github.com $githubToken
+  
+  # symfony requires php5-intl
+  - sudo apt-get update --yes --quiet
+  - sudo apt-get install --yes --quiet php5-intl
+
+#install:
+
+#before_script:
+
+script:
+  - ./bin/phpunit -c app/
+
+#after_script:
