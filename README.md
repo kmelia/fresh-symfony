@@ -41,4 +41,4 @@ To create tests follow [Symfony documentation][6] or copy paste sample into your
   [4]: http://getcomposer.org/
   [5]: http://phpunit.de/manual/current/en/
   [6]: http://symfony.com/fr/doc/current/book/testing.html
-  [7]: src/master/CONFIGURE.md
+  [7]: https://bitbucket.org/kmelia/fresh-symfony/src/master/CONFIGURE.md
