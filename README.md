@@ -10,7 +10,7 @@ Getting started
 
 **2.** If you don't have [Composer][4] yet, run the following command:
 ```bash
-curl -s http://getcomposer.org/installer | php
+curl -sS http://getcomposer.org/installer | php
 ```
 
 **3.** Then, run the following commands:
