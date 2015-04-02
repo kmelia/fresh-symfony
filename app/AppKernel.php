@@ -17,6 +17,7 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
+            new AppBundle\AppBundle(),
         );
         
         // src
@@ -36,7 +37,7 @@ class AppKernel extends Kernel
     {
         $loader->load(sprintf(
             '%s/config/config_%s.yml',
-            __DIR__,
+            $this->getRootDir(),
             $this->getEnvironment()
         ));
     }

@@ -1,3 +1,7 @@
+app:
+    resource: @AppBundle/Controller/
+    type:     annotation
+
 kmelia_fresh:
     resource: "@KmeliaFreshBundle/Resources/config/routing.yml"
     prefix: /
