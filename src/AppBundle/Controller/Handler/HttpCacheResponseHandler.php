@@ -1,6 +1,6 @@
 <?php
 
-namespace Kmelia\FreshBundle\Controller\Handler;
+namespace AppBundle\Controller\Handler;
 
 use Symfony\Component\HttpFoundation\Response;
 
