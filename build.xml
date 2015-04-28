@@ -8,8 +8,8 @@
         </echo>
         
         <echo level="warning">Phing Launcher:</echo>
-        <echo>get-the-classics (or gtc)  : getting the classics configuration</echo>
-        <echo>phing-launcher.self-update : self update the Phing Launcher script.
+        <echo>get-the-classics (or gtc) : getting the classics configuration</echo>
+        <echo>self-update               : self update this script.
         </echo>
         
         <echo level="warning">Composer:</echo>
@@ -23,7 +23,7 @@
         </echo>
         
         <echo level="warning">PHPUnit:</echo>
-        <echo>phpunit.run               : run the PHPUnit tests (for Continuous Itegration).</echo>
+        <echo>phpunit.run               : run the PHPUnit tests (for Continuous Integration).</echo>
         <echo>phpunit.run.no-dependency : run the PHPUnit tests without installing all the dependencies.
         </echo>
         
