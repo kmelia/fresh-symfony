@@ -78,13 +78,7 @@ abstract class AbstractKmeliaCommand extends ContainerAwareCommand
      */
     private function isThatCommandLocked()
     {
-        $lockFilePath = sprintf(
-            '%s/lock_command_%s',
-            $this->getContainer()->get('kernel')->getCacheDir(),
-            str_replace(':', '_', $this->getName())
-        );
-        
-        $this->lockResource = fopen($lockFilePath, 'w+');
+        $this->lockResource = fopen($this->getLockFilePath(), 'w+');
         
         if (flock($this->lockResource, LOCK_EX | LOCK_NB)) {
             return false;
@@ -96,8 +90,21 @@ abstract class AbstractKmeliaCommand extends ContainerAwareCommand
     private function releaseLockResource()
     {
         if (is_resource($this->lockResource)) {
+            // release the lock
             flock($this->lockResource, LOCK_UN);
             fclose($this->lockResource);
+            
+            // remove the empty file
+            unlink($this->getLockFilePath());
         }
+    }
+    
+    private function getLockFilePath()
+    {
+        return sprintf(
+            '%s/lock_command_%s',
+            $this->getContainer()->get('kernel')->getCacheDir(),
+            str_replace(':', '_', $this->getName())
+        );
     }
 }
