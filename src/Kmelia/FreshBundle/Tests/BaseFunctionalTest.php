@@ -2,13 +2,13 @@
 
 namespace Kmelia\FreshBundle\Tests;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use AppBundle\Tests\WebTestCase;
 
 class BaseFunctionalTest extends WebTestCase
 {
     public function testHomepage()
     {
-        $client = static::createClient();
+        $client = $this->getClient();
         
         $crawler  = $client->request('GET', '/');
         $response = $client->getResponse();
@@ -27,7 +27,7 @@ class BaseFunctionalTest extends WebTestCase
     
     public function testNoHttpCacheHomepage()
     {
-        $client = static::createClient();
+        $client = $this->getClient();
         
         $client->request('GET', '/no-http-cache');
         $response = $client->getResponse();
