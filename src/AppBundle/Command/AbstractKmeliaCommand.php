@@ -72,6 +72,10 @@ abstract class AbstractKmeliaCommand extends ContainerAwareCommand
         }
     }
     
+    /**
+     * TODO use a Symfony\Component\Filesystem\LockHandler on the next LTS
+     * @see http://symfony.com/doc/current/components/filesystem/lock_handler.html
+     */
     private function isThatCommandLocked()
     {
         $lockFilePath = sprintf(
