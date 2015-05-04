@@ -26,15 +26,17 @@ class LockingTest extends WebTestCase
         // the lock does not exists
         $this->assertFileNotExists($sleeperCommandLockFilePath);
         
-        // the first run of this command with the locking mechanism
+        // the first run of this command with the locking mechanism: the lock is created
         $process = new Process($commandline);
         $process->start();
         
-        // the second run of this command is invalid: the lock is created
+        sleep(1);
+        $this->assertFileExists($sleeperCommandLockFilePath);
+        
+        // the second run of this command is invalid
         $process = new Process($commandline);
         $process->run();
         
-        $this->assertFileExists($sleeperCommandLockFilePath);
         $this->assertSame(2, $process->getExitCode());
         $this->assertContains('This runtime will not be started', $process->getOutput());
         $this->assertContains('The locking is activated for this command and an instance is already launched', $process->getOutput());
