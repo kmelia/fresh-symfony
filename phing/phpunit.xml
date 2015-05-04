@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+    <import file="phing/composer.xml" />
+    
+    <target name="phpunit.run">
+        <phingcall target="phpunit.only-runs-tests" />
+    </target>
+    
+    <target name="phpunit.run.no-dependency">
+        <phingcall target="phpunit.only-runs-tests">
+            <property name="phpunit.no-composer" value="true" />
+        </phingcall>
+    </target>
+    
+    <target name="phpunit.only-runs-tests" depends="phpunit.check-properties" hidden="true">
+        <if>
+            <not>
+                <isset property="phpunit.no-composer" />
+            </not>
+            <then>
+                <phingcall target="composer.install" />
+            </then>
+        </if>
+        
+        <exec command="env ./bin/phpunit -c ${phpunit.configuration-directory} ${phpunit.parameters}"
+            passthru="true" checkreturn="true" level="info" />
+    </target>
+    
+    <target name="phpunit.check-properties" hidden="true">
+        <if>
+            <not>
+                <isset property="phpunit.configuration-directory" />
+            </not>
+            <then>
+                <property name="phpunit.configuration-directory" value="app" />
+            </then>
+        </if>
+        
+        <if>
+            <not>
+                <isset property="phpunit.parameters" />
+            </not>
+            <then>
+                <property name="phpunit.parameters" value="" />
+            </then>
+        </if>
+    </target>
+</project>

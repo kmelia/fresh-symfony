@@ -2,42 +2,14 @@
 
 namespace Kmelia\FreshBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response;
+use AppBundle\Controller\AbstractKmeliaController;
+use AppBundle\Controller\Handler\HttpCacheResponseHandler;
 
-abstract class AbstractController extends Controller
+abstract class AbstractController extends AbstractKmeliaController
 {
-    private $responseHandlers = array();
-    
-    protected function addResponseHandler(Handler\ResponseHandler $responseHandler)
+    public function __construct()
     {
-        $this->responseHandlers[] = $responseHandler;
-    }
-    
-    /**
-     * Remove each handler which is same as the handler passed
-     */
-    protected function removeResponseHandlers(Handler\ResponseHandler $responseHandlerToRemove)
-    {
-        foreach ($this->responseHandlers as $index => $responseHandler) {
-            if ($responseHandler instanceof $responseHandlerToRemove) {
-                unset($this->responseHandlers[$index]);
-            }
-        }
-    }
-    
-    /**
-     * Renders a view with an handled Reponse
-     * @see \Symfony\Bundle\FrameworkBundle\Controller\Controller::render()
-     */
-    public function render($view, array $parameters = array(), Response $response = null)
-    {
-        $response = parent::render($view, $parameters, $response);
-        
-        foreach ($this->responseHandlers as $responseHandler) {
-            $response = $responseHandler->handleResponse($response);
-        }
-        
-        return $response;
+        // add http cache handler
+        $this->addResponseHandler(new HttpCacheResponseHandler());
     }
 }

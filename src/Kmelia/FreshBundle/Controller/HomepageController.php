@@ -2,7 +2,9 @@
 
 namespace Kmelia\FreshBundle\Controller;
 
-class HomepageController extends AbstractKmeliaController
+use AppBundle\Controller\Handler\HttpCacheResponseHandler;
+
+class HomepageController extends AbstractController
 {
     public function homepageAction()
     {
@@ -12,7 +14,7 @@ class HomepageController extends AbstractKmeliaController
     public function noHttpCacheHomepageAction()
     {
         // remove http cache handler
-        $this->removeResponseHandlers(new Handler\HttpCacheResponseHandler());
+        $this->removeResponseHandlers(new HttpCacheResponseHandler());
         
         return $this->render('KmeliaFreshBundle:Homepage:homepage.html.twig');
     }

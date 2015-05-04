@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="help">
+    <import file="phing/composer.xml" />
+    <import file="phing/phpunit.xml" />
+    
+    <target name="help">
+        <echo>Available tasks listed below:
+        </echo>
+        
+        <echo level="warning">Phing Launcher:</echo>
+        <echo>get-the-classics (or gtc) : getting the classics configuration</echo>
+        <echo>self-update               : self update this script.
+        </echo>
+        
+        <echo level="warning">Composer:</echo>
+        <echo>composer.update  : updates the project dependencies with Composer.
+          + see the composer.install description.</echo>
+        <echo>composer.install : installs the project dependencies with Composer.
+          + optionals parameters:
+              [composer.parameters] : add some parameters to the command (default: "")
+              [composer.directory]  : run the command in a specific directory (default: .)
+          + example : ./phing.sh composer.install -Dcomposer.parameters="--no-dev --no-scripts"
+        </echo>
+        
+        <echo level="warning">PHPUnit:</echo>
+        <echo>phpunit.run               : run the PHPUnit tests (for Continuous Integration).</echo>
+        <echo>phpunit.run.no-dependency : run the PHPUnit tests without installing all the dependencies.
+        </echo>
+        
+        <echo>Tip no color : phing -logger phing.listener.DefaultLogger</echo>
+    </target>
+</project>
