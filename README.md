@@ -4,9 +4,11 @@ Fresh Symfony
 
 Provides a [Fresh Symfony][1] to start your application quickly.
 
+The application is based on the **current LTS version**, according to the [Symfony Roadmap][8].
+
 Getting started
 ---------------
-**1.** Download the [**latest stable release** [tar.gz]][2] inherited from [Symfony 2.3][3]
+**1.** Download the [**latest stable release** [tar.gz]][2] inherited from [Symfony 2.3][3].
 
 **2.** If you don't have [Composer][4] yet, run the following command:
 ```bash
@@ -42,3 +44,4 @@ To create tests follow [Symfony documentation][6] or copy paste sample into your
   [5]: https://phpunit.de/manual/current/en/
   [6]: https://symfony.com/fr/doc/current/book/testing.html
   [7]: https://bitbucket.org/kmelia/fresh-symfony/src/master/CONFIGURE.md
+  [8]: https://symfony.com/roadmap
