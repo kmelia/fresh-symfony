@@ -10,7 +10,7 @@ Getting started
 
 **2.** If you don't have [Composer][4] yet, run the following command:
 ```bash
-curl -sS http://getcomposer.org/installer | php
+curl -sS https://getcomposer.org/installer | php
 ```
 
 **3.** Then, run the following commands:
@@ -38,7 +38,7 @@ To create tests follow [Symfony documentation][6] or copy paste sample into your
   [1]: https://bitbucket.org/kmelia/fresh-symfony
   [2]: https://bitbucket.org/kmelia/fresh-symfony/get/2.3.x-0.5.tar.gz
   [3]: https://github.com/symfony/symfony-standard/tree/2.3
-  [4]: http://getcomposer.org/
-  [5]: http://phpunit.de/manual/current/en/
-  [6]: http://symfony.com/fr/doc/current/book/testing.html
+  [4]: https://getcomposer.org/
+  [5]: https://phpunit.de/manual/current/en/
+  [6]: https://symfony.com/fr/doc/current/book/testing.html
   [7]: https://bitbucket.org/kmelia/fresh-symfony/src/master/CONFIGURE.md
