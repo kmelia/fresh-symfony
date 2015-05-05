@@ -1,5 +1,8 @@
+# Magnum CI: Hosted Continuous Integration Platform
+# https://magnum-ci.com
+
 before_install:
-  # composer configuration
+  # explicit Composer configuration for Magnum CI
   - export COMPOSER_CACHE_DIR=.composer-cache/
   - composer config github-oauth.github.com $githubToken
   
@@ -7,11 +10,12 @@ before_install:
   - sudo apt-get update --yes --quiet
   - sudo apt-get install --yes --quiet php5-intl
 
-#install:
+install:
+  - echo "do not install anything yet"
 
 #before_script:
 
 script:
-  - ./bin/phpunit -c app/
+  - ./phing.sh phpunit.run
 
 #after_script:
