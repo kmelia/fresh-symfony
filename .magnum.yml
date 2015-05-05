@@ -16,6 +16,6 @@ install:
 #before_script:
 
 script:
-  - ./phing.sh phpunit.run
+  - sh phing.sh phpunit.run
 
 #after_script:
