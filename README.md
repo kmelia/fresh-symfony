@@ -34,7 +34,7 @@ To run the unit tests:
 
 
   [1]: https://bitbucket.org/kmelia/fresh-symfony "Fresh Symfony"
-  [2]: https://bitbucket.org/kmelia/fresh-symfony/get/2.3.x-0.5.tar.gz "Latest stable release of Fresh Symfony"
+  [2]: https://bitbucket.org/kmelia/fresh-symfony/get/2.3.x-0.6.tar.gz "Latest stable release of Fresh Symfony"
   [3]: https://github.com/symfony/symfony-standard/tree/2.3 "The current LTS version is 2.3"
   [4]: https://symfony.com/roadmap "Symfony roadmap"
   [5]: https://phpunit.de/manual/current/en/ "4.x release"
