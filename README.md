@@ -1,14 +1,16 @@
 Fresh Symfony
 =============
-[![Build Status](https://magnum-ci.com/status/b9d4cccf813ad43c794cbb822e8f2f9c.png?branch=develop)](https://magnum-ci.com/public/6c526f21990a8688e44d/builds)
+[![Build Status](https://magnum-ci.com/status/b9d4cccf813ad43c794cbb822e8f2f9c.png?branch=release/2.3_LTS)](https://magnum-ci.com/public/6c526f21990a8688e44d/builds)
+
+> **Caution**: You are browsing the 2.3 LTS part of this repository.
 
 Provides a [**Fresh Symfony**][1] to start your application quickly.
 
-The application is based on the **current LTS version**, according to the [Symfony Roadmap][4].
+The application is based on the **2.3 LTS version** (*end of support: May 2017*), check to the [Symfony Roadmap][4].
 
 Getting started
 ---------------
-**1.** Download the [**latest stable release** [tar.gz]][2] inherited from [Symfony 2.3][3].
+**1.** Download the [**latest stable 2.3 release** [tar.gz]][2] inherited from [Symfony 2.3][3].
 
 **2.** Then, run the following commands:
 ```bash
@@ -34,8 +36,8 @@ To run the unit tests:
 
 
   [1]: https://bitbucket.org/kmelia/fresh-symfony "Fresh Symfony"
-  [2]: https://bitbucket.org/kmelia/fresh-symfony/get/2.3_LTS-0.6.tar.gz "Latest stable release of Fresh Symfony"
-  [3]: https://github.com/symfony/symfony-standard/tree/2.3 "The current LTS version is 2.3"
+  [2]: https://bitbucket.org/kmelia/fresh-symfony/get/2.3_LTS-0.7.tar.gz "Latest stable 2.3 release of Fresh Symfony"
+  [3]: https://github.com/symfony/symfony-standard/tree/2.3 "The 2.3 LTS version"
   [4]: https://symfony.com/roadmap "Symfony roadmap"
   [5]: https://phpunit.de/manual/current/en/ "4.x release"
   [6]: https://symfony.com/fr/doc/current/book/testing.html "Symfony documentation"
