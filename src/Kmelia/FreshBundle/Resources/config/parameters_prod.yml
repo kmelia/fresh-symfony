@@ -1,3 +1,4 @@
+# Set parameters here for the production target of the app
 parameters:
     database_driver:   pdo_mysql
     database_host:     ~
