@@ -6,6 +6,8 @@ Provides a [**Fresh Symfony**][1] to start your application quickly.
 
 The application is based on the **current LTS version**, according to the [Symfony Roadmap][4].
 
+*You can found the 2.3 LTS part of this repository [here][8].*
+
 Getting started
 ---------------
 **1.** Download the [**latest stable release** [tar.gz]][2] inherited from [Symfony 2.7][3].
@@ -40,3 +42,4 @@ To run the unit tests:
   [5]: https://phpunit.de/manual/current/en/ "4.x release"
   [6]: https://symfony.com/fr/doc/current/book/testing.html "Symfony documentation"
   [7]: https://bitbucket.org/kmelia/fresh-symfony/src/master/CONFIGURE.md "Fresh Symfony documentation"
+  [8]: https://bitbucket.org/kmelia/fresh-symfony/src/release/2.3_LTS/README.md "Fresh Symfony 2.3 LTS"
