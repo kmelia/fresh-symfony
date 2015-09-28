@@ -1,5 +1,5 @@
-Fresh Symfony
-=============
+Fresh Symfony 2.3 LTS
+=====================
 [![Build Status](https://magnum-ci.com/status/b9d4cccf813ad43c794cbb822e8f2f9c.png?branch=release/2.3_LTS)](https://magnum-ci.com/public/6c526f21990a8688e44d/builds)
 
 > **Caution**: You are browsing the 2.3 LTS part of this repository.
@@ -41,4 +41,4 @@ To run the unit tests:
   [4]: https://symfony.com/roadmap "Symfony roadmap"
   [5]: https://phpunit.de/manual/current/en/ "4.x release"
   [6]: https://symfony.com/fr/doc/current/book/testing.html "Symfony documentation"
-  [7]: https://bitbucket.org/kmelia/fresh-symfony/src/master/CONFIGURE.md "Fresh Symfony documentation"
+  [7]: https://bitbucket.org/kmelia/fresh-symfony/src/release/2.3_LTS/CONFIGURE.md "Fresh Symfony documentation"
