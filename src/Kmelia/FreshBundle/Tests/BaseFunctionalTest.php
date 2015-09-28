@@ -14,7 +14,7 @@ class BaseFunctionalTest extends WebTestCase
         $response = $client->getResponse();
         
         // content
-        $this->assertGreaterThan(0, $crawler->filter('html:contains("fresh")')->count(), 'Word "fresh"');
+        $this->assertGreaterThan(0, $crawler->filter('html:contains("fresh-symfony")')->count(), 'Word "fresh-symfony"');
         
         // headers
         $this->assertTrue($response->isOk(), 'Http code 200');
