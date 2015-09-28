@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+    <target name="alias.symfony-clear-cache-test">
+        <phingcall target="symfony.clear-cache">
+            <property name="symfony.environment" value="test" />
+        </phingcall>
+    </target>
+</project>
