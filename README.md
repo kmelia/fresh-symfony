@@ -8,7 +8,7 @@ The application is based on the **current LTS version**, according to the [Symfo
 
 Getting started
 ---------------
-**1.** Download the [**latest stable release** [tar.gz]][2] inherited from [Symfony 2.3][3].
+**1.** Download the [**latest stable release** [tar.gz]][2] inherited from [Symfony 2.7][3].
 
 **2.** Then, run the following commands:
 ```bash
@@ -34,8 +34,8 @@ To run the unit tests:
 
 
   [1]: https://bitbucket.org/kmelia/fresh-symfony "Fresh Symfony"
-  [2]: https://bitbucket.org/kmelia/fresh-symfony/get/2.3_LTS-0.6.tar.gz "Latest stable release of Fresh Symfony"
-  [3]: https://github.com/symfony/symfony-standard/tree/2.3 "The current LTS version is 2.3"
+  [2]: https://bitbucket.org/kmelia/fresh-symfony/get/2.7_LTS-0.1.tar.gz "Latest stable release of Fresh Symfony"
+  [3]: https://github.com/symfony/symfony-standard/tree/2.7 "The current LTS version is 2.7"
   [4]: https://symfony.com/roadmap "Symfony roadmap"
   [5]: https://phpunit.de/manual/current/en/ "4.x release"
   [6]: https://symfony.com/fr/doc/current/book/testing.html "Symfony documentation"
