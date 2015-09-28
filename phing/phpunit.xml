@@ -14,6 +14,13 @@
     
     <target name="phpunit.only-runs-tests" depends="phpunit.check-properties" hidden="true">
         <if>
+            <isset property="phpunit.clear-cache" />
+            <then>
+                <phingcall target="${phpunit.clear-cache}" />
+            </then>
+        </if>
+        
+        <if>
             <not>
                 <isset property="phpunit.no-composer" />
             </not>

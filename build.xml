@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project default="help">
+    <import file="phing/alias.xml" />
     <import file="phing/composer.xml" />
     <import file="phing/phpunit.xml" />
+    <import file="phing/symfony.xml" />
+    
+    <property name="phpunit.clear-cache" value="alias.symfony-clear-cache-test" />
     
     <target name="help">
         <echo>Available tasks listed below:
