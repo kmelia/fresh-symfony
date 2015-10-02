@@ -5,15 +5,16 @@
     <import file="phing/phpunit.xml" />
     <import file="phing/symfony.xml" />
     
-    <property name="phpunit.clear-cache" value="alias.symfony-clear-cache-test" />
+    <property name="phpunit.configuration-directory" value="app" />
+    <property name="phpunit.clear-cache-target" value="alias.symfony-clear-cache-test" />
     
     <target name="help">
         <echo>Available tasks listed below:
         </echo>
         
         <echo level="warning">Phing Launcher:</echo>
-        <echo>get-the-classics (or gtc) : getting the classics configuration</echo>
-        <echo>self-update               : self update this script.
+        <echo>get-the-classics (gtc) : getting the classics configuration</echo>
+        <echo>self-update (su)       : self update this script.
         </echo>
         
         <echo level="warning">Composer:</echo>
@@ -31,6 +32,27 @@
         <echo>phpunit.run.no-dependency : run the PHPUnit tests without installing all the dependencies.
         </echo>
         
-        <echo>Tip no color : phing -logger phing.listener.DefaultLogger</echo>
+        <echo level="warning">Symfony:</echo>
+        <echo>optional parameter:
+              [symfony.environment] : the environment name (default: "dev")        </echo>
+        <echo>symfony.clear-cache : clears the application cache for a given environment
+        </echo>
+        
+        <echo level="warning">Tips:</echo>
+        <echo>no color        : ./phing.sh my.command -logger phing.listener.DefaultLogger</echo>
+        <echo>add a parameter : ./phing.sh my.command -Dmy.parameter="my.value"</echo>
+    </target>
+    
+    <target name="phing.run-command" hidden="true">
+        <if>
+            <not>
+                <isset property="phing.command-level" />
+            </not>
+            <then>
+                <property name="phing.command-level" value="info" />
+            </then>
+        </if>
+        
+        <exec command="${phing.command-name}" passthru="true" checkreturn="true" level="${phing.command-level}" />
     </target>
 </project>
