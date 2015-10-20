@@ -11,7 +11,6 @@ install:
 before_script:
   # explicit Composer configuration for Magnum CI
   - export COMPOSER_CACHE_DIR=.composer-cache/
-  - composer config github-oauth.github.com $githubToken
 
 script:
   - sh phing.sh phpunit.run
