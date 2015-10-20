@@ -1,19 +1,17 @@
 # Magnum CI: Hosted Continuous Integration Platform
 # https://magnum-ci.com
 
-before_install:
+#before_install:
+
+install:
+  # requires PHP with Internationalization extension 
+  - sudo apt-get update --yes --quiet
+  - sudo apt-get install --yes --quiet php5 php5-intl
+
+before_script:
   # explicit Composer configuration for Magnum CI
   - export COMPOSER_CACHE_DIR=.composer-cache/
   - composer config github-oauth.github.com $githubToken
-  
-  # symfony requires php5-intl
-  - sudo apt-get update --yes --quiet
-  - sudo apt-get install --yes --quiet php5-intl
-
-install:
-  - echo "do not install anything yet"
-
-#before_script:
 
 script:
   - sh phing.sh phpunit.run
