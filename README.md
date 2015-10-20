@@ -1,6 +1,6 @@
 Fresh Symfony
 =============
-[![Build Status](https://magnum-ci.com/status/b9d4cccf813ad43c794cbb822e8f2f9c.png?branch=develop)](https://magnum-ci.com/public/6c526f21990a8688e44d/builds)
+[![Build Status](https://magnum-ci.com/status/c4cfff922fa8b0d39a0b19cb327c8e2f.png?branch=develop)](https://magnum-ci.com/public/e0f6782705b5959c0b15/builds)
 
 Provides a [**Fresh Symfony**][1] to start your application quickly.
 
