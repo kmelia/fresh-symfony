@@ -4,7 +4,10 @@
 #before_install:
 
 install:
-  # requires PHP with Internationalization extension 
+  # requires PHP5.5 instead of the current version
+  - sudo apt-get install --yes --quiet python-software-properties
+  - sudo add-apt-repository --yes ppa:ondrej/php5
+  # requires PHP with Internationalization extension
   - sudo apt-get update --yes --quiet
   - sudo apt-get install --yes --quiet php5 php5-intl
 
