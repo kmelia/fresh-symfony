@@ -1,6 +1,6 @@
 Fresh Symfony 2.3 LTS
 =====================
-[![Build Status](https://magnum-ci.com/status/b9d4cccf813ad43c794cbb822e8f2f9c.png?branch=release/2.3_LTS)](https://magnum-ci.com/public/6c526f21990a8688e44d/builds)
+[![Build Status](https://magnum-ci.com/status/c4cfff922fa8b0d39a0b19cb327c8e2f.png?branch=release/2.3_LTS)](https://magnum-ci.com/public/e0f6782705b5959c0b15/builds)
 
 > **Caution**: You are browsing the 2.3 LTS part of this repository.
 
