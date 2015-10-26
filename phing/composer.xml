@@ -54,7 +54,10 @@
         <if>
             <isset property="env.COMPOSER_GITHUB_OAUTH_TOKEN" />
             <then>
+                <echo>create github-oauth.github.com</echo>
+                
                 <phingcall target="phing.run-command">
+                    <property name="phing.command-level" value="debug" />
                     <property name="phing.command-name" value="php composer.phar config github-oauth.github.com ${env.COMPOSER_GITHUB_OAUTH_TOKEN}" />
                 </phingcall>
             </then>
