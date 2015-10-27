@@ -1,6 +1,6 @@
 Fresh Symfony
 =============
-[![Build Status](https://magnum-ci.com/status/b9d4cccf813ad43c794cbb822e8f2f9c.png?branch=develop)](https://magnum-ci.com/public/6c526f21990a8688e44d/builds)
+[![Build Status](https://travis-ci.org/kmelia/fresh-symfony.svg?branch=master)](https://travis-ci.org/kmelia/fresh-symfony/branches)
 
 Provides a [**Fresh Symfony**][1] to start your application quickly.
 
@@ -36,7 +36,7 @@ To run the unit tests:
 
 
   [1]: https://bitbucket.org/kmelia/fresh-symfony "Fresh Symfony"
-  [2]: https://bitbucket.org/kmelia/fresh-symfony/get/2.7_LTS-0.2.tar.gz "Latest stable release of Fresh Symfony"
+  [2]: https://bitbucket.org/kmelia/fresh-symfony/get/2.7_LTS-0.3.tar.gz "Latest stable release of Fresh Symfony"
   [3]: https://github.com/symfony/symfony-standard/tree/2.7 "The current LTS version is 2.7"
   [4]: https://symfony.com/roadmap "Symfony roadmap"
   [5]: https://phpunit.de/manual/current/en/ "4.x release"
