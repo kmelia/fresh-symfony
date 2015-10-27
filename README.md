@@ -1,6 +1,6 @@
 Fresh Symfony
 =============
-[![Build Status](https://magnum-ci.com/status/c4cfff922fa8b0d39a0b19cb327c8e2f.png?branch=develop)](https://magnum-ci.com/public/e0f6782705b5959c0b15/builds)
+[![Build Status](https://travis-ci.org/kmelia/fresh-symfony.svg?branch=master)](https://travis-ci.org/kmelia/fresh-symfony/branches)
 
 Provides a [**Fresh Symfony**][1] to start your application quickly.
 
