@@ -23,6 +23,9 @@ class AppKernel extends Kernel
         // src
         $bundles[] = new Kmelia\FreshBundle\KmeliaFreshBundle();
         
+        // vendor
+        //$bundles[] = new Vendor\VendorBundle\VendorVendorBundle();
+        
         // development or integration
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
             $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();
