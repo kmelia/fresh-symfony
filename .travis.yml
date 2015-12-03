@@ -16,4 +16,4 @@ env:
     global:
         - COMPOSER_CACHE_DIR=.composer-cache/
 
-script: sh phing.sh phpunit.run
+script: ./phing.sh phpunit.run
