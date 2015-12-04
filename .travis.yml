@@ -11,6 +11,7 @@ branches:
         - master
         - develop
         - release/2.3_LTS
+        - release/2.7_LTS
 
 env:
     global:
