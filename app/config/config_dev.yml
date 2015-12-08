@@ -1,5 +1,5 @@
 imports:
-    - { resource: @KmeliaFreshBundle/Resources/config/parameters_dev.yml }
+    - { resource: "@KmeliaFreshBundle/Resources/config/parameters_dev.yml" }
     - { resource: config.yml }
 
 framework:
