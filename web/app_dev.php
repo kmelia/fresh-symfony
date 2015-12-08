@@ -1,6 +1,7 @@
 <?php
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Debug\Debug;
 
 // If you don't want to setup permissions the proper way, just uncomment the following PHP line
 // read http://symfony.com/doc/current/book/installation.html#checking-symfony-application-configuration-and-setup
@@ -14,9 +15,11 @@ if (!isset($_SERVER['REMOTE_ADDR']) || !preg_match('~^((127|10)\.0\.0\.[0-9]+|(f
     exit('You are not allowed to access this file. Check ' . basename(__FILE__) . ' for more information.');
 }
 
-$loader = require_once __DIR__.'/../app/bootstrap.php.cache';
-
-require_once __DIR__.'/../app/AppKernel.php';
+/**
+ * @var Composer\Autoload\ClassLoader $loader
+ */
+$loader = require __DIR__.'/../app/autoload.php';
+Debug::enable();
 
 $kernel = new AppKernel('dev', true);
 $kernel->loadClassCache();
