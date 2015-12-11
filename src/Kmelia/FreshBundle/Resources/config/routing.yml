@@ -1,14 +1,14 @@
 homepage:
-    pattern: /
+    path: /
     defaults: { _controller: "KmeliaFreshBundle:Homepage:homepage" }
     requirements: { _method: GET }
 
 no_http_cache_homepage:
-    pattern: /no-http-cache
+    path: /no-http-cache
     defaults: { _controller: "KmeliaFreshBundle:Homepage:noHttpCacheHomepage" }
     requirements: { _method: GET }
 
 secured_area:
-    pattern: /secured-area
+    path: /secured-area
     defaults: { _controller: "KmeliaFreshBundle:Homepage:homepage" }
     requirements: { _method: GET }
