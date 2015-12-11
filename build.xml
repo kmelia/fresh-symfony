@@ -5,7 +5,7 @@
     <import file="phing/phpunit.xml" />
     <import file="phing/symfony.xml" />
     
-    <property name="phpunit.configuration-directory" value="app" />
+    <property name="phpunit.configuration-directory" value="." />
     <property name="phpunit.clear-cache-target" value="alias.symfony-clear-cache-test" />
     
     <target name="help">
