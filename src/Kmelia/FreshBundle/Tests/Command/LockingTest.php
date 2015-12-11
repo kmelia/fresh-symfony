@@ -32,6 +32,7 @@ class LockingTest extends WebTestCase
         
         sleep(1);
         
+        $this->assertTrue($process->isRunning(), sprintf('The command %s does not work', $process->getCommandLine()));
         $this->assertFileExists($sleeperCommandLockFilePath);
         
         // the second run of this command is invalid
