@@ -18,7 +18,7 @@ class LockingTest extends WebTestCase
             str_replace(':', '_', $sleeperCommand->getName())
         );
         $commandline = sprintf(
-            './bin/console --env=%s %s',
+            'env ./bin/console --env=%s %s',
             $this->getClient()->getKernel()->getEnvironment(),
             $sleeperCommand->getName()
         );
