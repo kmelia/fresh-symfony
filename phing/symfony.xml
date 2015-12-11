@@ -10,7 +10,7 @@
     
     <target name="symfony.run-command" depends="symfony.check-properties" hidden="true">
         <phingcall target="phing.run-command">
-            <property name="phing.command-name" value="php app/console --env=${symfony.environment} ${symfony.command-name}" />
+            <property name="phing.command-name" value="env ./bin/console --env=${symfony.environment} ${symfony.command-name}" />
         </phingcall>
     </target>
     

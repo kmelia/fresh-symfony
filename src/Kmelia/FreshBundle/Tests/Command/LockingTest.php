@@ -18,7 +18,7 @@ class LockingTest extends WebTestCase
             str_replace(':', '_', $sleeperCommand->getName())
         );
         $commandline = sprintf(
-            'php app/console --env=%s %s',
+            './bin/console --env=%s %s',
             $this->getClient()->getKernel()->getEnvironment(),
             $sleeperCommand->getName()
         );
@@ -31,6 +31,7 @@ class LockingTest extends WebTestCase
         $process->start();
         
         sleep(1);
+        
         $this->assertFileExists($sleeperCommandLockFilePath);
         
         // the second run of this command is invalid
