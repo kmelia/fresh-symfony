@@ -31,7 +31,7 @@
         </if>
         
         <phingcall target="phing.run-command">
-            <property name="phing.command-name" value="env ./bin/phpunit -c ${phpunit.configuration-directory} ${phpunit.parameters}" />
+            <property name="phing.command-name" value="env ./vendor/bin/phpunit -c ${phpunit.configuration-directory} ${phpunit.parameters}" />
         </phingcall>
     </target>
     
