@@ -5,8 +5,10 @@
     <import file="phing/phpunit.xml" />
     <import file="phing/symfony.xml" />
     
+    <property name="phpunit.bin-directory" value="bin" />
     <property name="phpunit.configuration-directory" value="app" />
     <property name="phpunit.clear-cache-target" value="alias.symfony-clear-cache-test" />
+    <property name="symfony.bin-directory" value="app" />
     
     <target name="help">
         <echo level="warning">Available tasks listed below:
@@ -36,8 +38,8 @@
         </echo>
         
         <echo>Phing
-        ./phing.sh my.command -logger phing.listener.DefaultLogger .. disable colors; 
-        ./phing.sh my.command -Dmy.parameter="my.value" ............. add a parameter. 
+        ./phing.sh my.command -logger phing.listener.DefaultLogger .. disable colors,
+        ./phing.sh my.command -Dmy.parameter="my.value" ............. add a parameter.
         </echo>
     </target>
     
