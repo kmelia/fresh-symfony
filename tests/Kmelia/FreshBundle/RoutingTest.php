@@ -1,8 +1,8 @@
 <?php
 
-namespace Kmelia\FreshBundle\Tests;
+namespace Tests\Kmelia\FreshBundle;
 
-use AppBundle\Tests\WebTestCase;
+use Tests\AppBundle\WebTestCase;
 
 class RoutingTest extends WebTestCase
 {

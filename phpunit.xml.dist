@@ -14,12 +14,11 @@
     
     <testsuites>
         <testsuite name="fresh-symfony">
-            <directory>tests</directory>
-            <directory>src/AppBundle/Tests</directory>
-            <directory>src/Kmelia/FreshBundle/Tests</directory>
+            <directory>tests/AppBundle</directory>
+            <directory>tests/Kmelia</directory>
         </testsuite>
         <testsuite name="project">
-            <directory>src/Project/*Bundle/Tests</directory>
+            <directory>tests/Project</directory>
         </testsuite>
     </testsuites>
     
@@ -28,11 +27,8 @@
             <directory>src</directory>
             <exclude>
                 <directory>src/*Bundle/Resources</directory>
-                <directory>src/*Bundle/Tests</directory>
                 <directory>src/*/*Bundle/Resources</directory>
-                <directory>src/*/*Bundle/Tests</directory>
                 <directory>src/*/Bundle/*Bundle/Resources</directory>
-                <directory>src/*/Bundle/*Bundle/Tests</directory>
             </exclude>
         </whitelist>
     </filter>

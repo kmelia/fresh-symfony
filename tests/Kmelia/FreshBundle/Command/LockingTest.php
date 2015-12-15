@@ -1,8 +1,8 @@
 <?php
 
-namespace Kmelia\FreshBundle\Tests\Command;
+namespace Tests\Kmelia\FreshBundle\Command;
 
-use AppBundle\Tests\WebTestCase;
+use Tests\AppBundle\WebTestCase;
 use Kmelia\FreshBundle\Command\Test\SleeperCommand;
 use Symfony\Component\Process\Process;
 
