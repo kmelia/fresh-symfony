@@ -7,6 +7,7 @@
     
     <property name="phpunit.bin-directory" value="bin" />
     <property name="phpunit.configuration-directory" value="app" />
+    <property name="phpunit.install-target" value="composer.install" />
     <property name="phpunit.clear-cache-target" value="alias.symfony-clear-cache-test" />
     <property name="symfony.bin-directory" value="app" />
     
