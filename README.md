@@ -18,7 +18,7 @@ Getting started
 **2.** Then, run the following commands:
 ```bash
 ./phing.sh composer.install
-php bin/console --env=dev assets:install web --symlink --relative
+./phing.sh symfony.install-assets-symlink
 ```
 
 **3.** Finally, [configure your project][7].
