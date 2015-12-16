@@ -6,6 +6,7 @@
     <import file="phing/symfony.xml" />
     
     <property name="phpunit.configuration-directory" value="." />
+    <property name="phpunit.install-target" value="composer.install" />
     <property name="phpunit.clear-cache-target" value="alias.symfony-clear-cache-test" />
     
     <target name="help">
