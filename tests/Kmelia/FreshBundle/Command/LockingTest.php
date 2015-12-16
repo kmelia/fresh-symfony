@@ -1,8 +1,8 @@
 <?php
 
-namespace Kmelia\FreshBundle\Tests\Command;
+namespace Tests\Kmelia\FreshBundle\Command;
 
-use AppBundle\Tests\WebTestCase;
+use Tests\AppBundle\WebTestCase;
 use Kmelia\FreshBundle\Command\Test\SleeperCommand;
 use Symfony\Component\Process\Process;
 
@@ -18,7 +18,7 @@ class LockingTest extends WebTestCase
             str_replace(':', '_', $sleeperCommand->getName())
         );
         $commandline = sprintf(
-            'php app/console --env=%s %s',
+            'env ./bin/console --env=%s %s',
             $this->getClient()->getKernel()->getEnvironment(),
             $sleeperCommand->getName()
         );
@@ -31,6 +31,8 @@ class LockingTest extends WebTestCase
         $process->start();
         
         sleep(1);
+        
+        $this->assertTrue($process->isRunning(), sprintf('The command %s does not work', $process->getCommandLine()));
         $this->assertFileExists($sleeperCommandLockFilePath);
         
         // the second run of this command is invalid

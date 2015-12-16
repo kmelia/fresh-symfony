@@ -1,5 +1,5 @@
 imports:
-    - { resource: @KmeliaFreshBundle/Resources/config/parameters_dev.yml }
+    - { resource: "@KmeliaFreshBundle/Resources/config/parameters_dev.yml" }
     - { resource: config.yml }
 
 framework:
@@ -42,9 +42,6 @@ monolog:
         #chromephp:
         #    type:   chromephp
         #    level:  info
-
-assetic:
-    use_controller: true
 
 swiftmailer:
     delivery_address: %swiftmailer.delivery_address%

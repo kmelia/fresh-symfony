@@ -1,21 +1,24 @@
-Fresh Symfony
-=============
+Fresh Symfony 3.x
+=================
 [![Build Status](https://travis-ci.org/kmelia/fresh-symfony.svg?branch=master)](https://travis-ci.org/kmelia/fresh-symfony/branches)
 
 Provides a [**Fresh Symfony**][1] to start your application quickly.
 
-The application is based on the **current LTS version**, according to the [Symfony Roadmap][4].
+The application is based on the **latest stable 3.x branch**, according to the [Symfony Roadmap][4].
 
-*You can found the 2.3 LTS part of this repository [here][8].*
+You can also find *other available releases* of the application:
+
+ * the part [2.7 LTS][9],
+ * the part [2.3 LTS][8].
 
 Getting started
 ---------------
-**1.** Download the [**latest stable release** [tar.gz]][2] inherited from [Symfony 2.7][3].
+**1.** Download the [**latest stable release** [tar.gz]][2] inherited from [Symfony 3.0][3].
 
 **2.** Then, run the following commands:
 ```bash
 ./phing.sh composer.install
-php app/console --env=dev assets:install web --symlink --relative
+./phing.sh symfony.install-assets-symlink
 ```
 
 **3.** Finally, [configure your project][7].
@@ -27,7 +30,7 @@ Executing Unit tests
 
 The application embeds the [PHPUnit][5] testing framework on the development environment.
 
-Follow the [Symfony documentation][6] to create your unit test or copy/paste one the samples into your bundle at `src/Bundle/<YourName>/<YourBundleName>/Tests/`.
+Follow the [Symfony documentation][6] to create your unit test or copy/paste one of the samples into your bundle at `tests/<YourName>/<YourBundleName>/`.
 
 To run the unit tests:
 ```bash
@@ -36,10 +39,11 @@ To run the unit tests:
 
 
   [1]: https://bitbucket.org/kmelia/fresh-symfony "Fresh Symfony"
-  [2]: https://bitbucket.org/kmelia/fresh-symfony/get/2.7_LTS-0.3.tar.gz "Latest stable release of Fresh Symfony"
-  [3]: https://github.com/symfony/symfony-standard/tree/2.7 "The current LTS version is 2.7"
+  [2]: https://bitbucket.org/kmelia/fresh-symfony/get/master.tar.gz "Latest stable release of Fresh Symfony"
+  [3]: https://github.com/symfony/symfony-standard/tree/3.0 "The Symfony Standard Edition 3.0 release"
   [4]: https://symfony.com/roadmap "Symfony roadmap"
-  [5]: https://phpunit.de/manual/current/en/ "4.x release"
-  [6]: https://symfony.com/fr/doc/current/book/testing.html "Symfony documentation"
+  [5]: https://phpunit.de/manual/current/en/ "The PHPUnit 4.8 release"
+  [6]: https://symfony.com/doc/current/book/testing.html "Symfony documentation"
   [7]: https://bitbucket.org/kmelia/fresh-symfony/src/master/CONFIGURE.md "Fresh Symfony documentation"
   [8]: https://bitbucket.org/kmelia/fresh-symfony/src/release/2.3_LTS/README.md "Fresh Symfony 2.3 LTS"
+  [9]: https://bitbucket.org/kmelia/fresh-symfony/src/release/2.7_LTS/README.md "Fresh Symfony 2.7 LTS"
