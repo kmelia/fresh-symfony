@@ -1,10 +1,10 @@
 <?php
 
-namespace Tests\Kmelia\FreshBundle;
+namespace Tests\Kmelia\FreshBundle\Controller;
 
 use Tests\AppBundle\WebTestCase;
 
-class BaseFunctionalTest extends WebTestCase
+class HomepageControllerTest extends WebTestCase
 {
     public function testHomepage()
     {

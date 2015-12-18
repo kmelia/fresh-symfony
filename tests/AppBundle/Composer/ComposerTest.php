@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\AppBundle;
+namespace Tests\AppBundle\Composer;
 
-class BaseTest extends \PHPUnit_Framework_TestCase
+class ComposerTest extends \PHPUnit_Framework_TestCase
 {
     public function testAutoloadFile()
     {
