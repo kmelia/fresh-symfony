@@ -8,4 +8,10 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertFileExists('vendor/autoload.php');
     }
+    
+    public function testVendorBinFile()
+    {
+        $this->assertFileNotExists('bin/phpunit');
+        $this->assertFileExists('vendor/bin/phpunit');
+    }
 }
