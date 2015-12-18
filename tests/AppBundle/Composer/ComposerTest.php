@@ -6,6 +6,6 @@ class ComposerTest extends \PHPUnit_Framework_TestCase
 {
     public function testAutoloadFile()
     {
-        $this->assertFileExists('./vendor/autoload.php');
+        $this->assertFileExists('vendor/autoload.php');
     }
 }
