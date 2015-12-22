@@ -47,6 +47,7 @@ class RoutingTest extends WebTestCase
     }
     
     /**
+     * @group security
      * @dataProvider providerTestUnauthorized
      */
     public function testUnauthorized($route)

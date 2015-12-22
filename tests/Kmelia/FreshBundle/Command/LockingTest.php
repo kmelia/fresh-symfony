@@ -8,6 +8,9 @@ use Symfony\Component\Process\Process;
 
 class LockingTest extends WebTestCase
 {
+    /**
+     * @group console
+     */
     public function testSleeperCommand()
     {
         // init
