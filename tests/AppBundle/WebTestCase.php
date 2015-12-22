@@ -3,6 +3,7 @@
 namespace Tests\AppBundle;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase as BaseWebTestCase;
+use Symfony\Bundle\FrameworkBundle\Client;
 
 class WebTestCase extends BaseWebTestCase
 {
@@ -11,7 +12,7 @@ class WebTestCase extends BaseWebTestCase
     
     protected function getClient()
     {
-        if (!$this->client instanceof \AppKernel) {
+        if (!$this->client instanceof Client) {
             $this->overrideKernelDirectory();
             $this->client = static::createClient();
         }
