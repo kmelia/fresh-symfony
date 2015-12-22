@@ -39,6 +39,13 @@ class AppMicroKernel extends AppKernel
     {
         $loader->load(__DIR__.'/config.yml');
         
+        // integration
+        if ($this->getEnvironment() === 'test') {
+            $containerBuilder->loadFromExtension('framework', array(
+                'test' => true,
+            ));
+        }
+        
         // configure WebProfilerBundle only if the bundle is enabled
         if (isset($this->bundles['WebProfilerBundle'])) {
             $containerBuilder->loadFromExtension('web_profiler', array(

@@ -5,4 +5,13 @@
             <property name="symfony.environment" value="test" />
         </phingcall>
     </target>
+    
+    <target name="alias.phpunit-run-with-symfony-app-micro-kernel">
+        <php expression="putenv('PHPUNIT_SYMFONY_KERNEL_DIRECTORY=app/MicroKernel/');" />
+        
+        <phingcall target="phpunit.run">
+            <property name="phpunit.parameters" value="--exclude-group console,security" />
+            <property name="phpunit.clear-cache-target" value="" />
+        </phingcall>
+    </target>
 </project>
