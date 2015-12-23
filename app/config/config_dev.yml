@@ -1,6 +1,6 @@
 imports:
-    - { resource: "@KmeliaFreshBundle/Resources/config/parameters_dev.yml" }
     - { resource: config.yml }
+    - { resource: "@KmeliaFreshBundle/Resources/config/parameters_dev.yml" }
 
 framework:
     router:
