@@ -37,27 +37,11 @@ class MicroframeworkAppKernel extends AppKernel
     
     protected function configureContainer(ContainerBuilder $containerBuilder, LoaderInterface $loader)
     {
-        $loader->load(__DIR__.'/config/config.yml');
-        
-        // integration
-        if ($this->getEnvironment() === 'test') {
-            $containerBuilder->loadFromExtension('framework', array(
-                'test' => true,
-            ));
-        }
-        
-        // configure WebProfilerBundle only if the bundle is enabled
-        if (isset($this->bundles['WebProfilerBundle'])) {
-            $containerBuilder->loadFromExtension('web_profiler', array(
-                'toolbar'             => true,
-                'position'            => 'top',
-                'intercept_redirects' => false,
-            ));
-            
-            $containerBuilder->loadFromExtension('framework', array(
-                'profiler' => array('only_exceptions' => false),
-            ));
-        }
+        $loader->load(sprintf(
+            '%s/config/config_%s.yml',
+            __DIR__,
+            $this->getEnvironment()
+        ));
     }
     
     protected function configureRoutes(RouteCollectionBuilder $routes)
