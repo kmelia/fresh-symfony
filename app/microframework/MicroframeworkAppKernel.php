@@ -32,7 +32,7 @@ class MicroframeworkAppKernel extends AppKernel
     
     public function getCacheDir()
     {
-        return str_replace('/cache/', '/cache/MicroKernel/', parent::getCacheDir());
+        return dirname(__DIR__).'/var/cache/microframework'.$this->getEnvironment();
     }
     
     protected function configureContainer(ContainerBuilder $containerBuilder, LoaderInterface $loader)
