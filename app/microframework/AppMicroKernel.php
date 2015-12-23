@@ -37,7 +37,7 @@ class AppMicroKernel extends AppKernel
     
     protected function configureContainer(ContainerBuilder $containerBuilder, LoaderInterface $loader)
     {
-        $loader->load(__DIR__.'/config.yml');
+        $loader->load(__DIR__.'/config/config.yml');
         
         // integration
         if ($this->getEnvironment() === 'test') {

@@ -7,7 +7,7 @@
     </target>
     
     <target name="alias.phpunit-run-with-symfony-app-micro-kernel">
-        <php expression="putenv('PHPUNIT_SYMFONY_KERNEL_DIRECTORY=app/MicroKernel/');" />
+        <php expression="putenv('PHPUNIT_SYMFONY_KERNEL_DIRECTORY=app/microframework/');" />
         
         <phingcall target="phpunit.run">
             <property name="phpunit.parameters" value="--exclude-group console,security" />
