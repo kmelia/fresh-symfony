@@ -1,4 +1,5 @@
 imports:
+    - { resource: ../microframework/config/config_dev.yml }
     - { resource: config.yml }
     - { resource: "@KmeliaFreshBundle/Resources/config/parameters_dev.yml" }
 
@@ -6,12 +7,6 @@ framework:
     router:
         resource: "%kernel.root_dir%/config/routing_dev.yml"
         strict_requirements: true
-    profiler: { only_exceptions: false }
-
-web_profiler:
-    toolbar: true
-    position: top
-    intercept_redirects: false
 
 monolog:
     handlers:
