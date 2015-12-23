@@ -17,10 +17,9 @@ if (!isset($_SERVER['REMOTE_ADDR']) || !preg_match('~^((127|10)\.0\.0\.[0-9]+|(f
 
 // require Composer's autoloader
 require __DIR__.'/../vendor/autoload.php';
-require __DIR__.'/../app/MicroKernel/AppMicroKernel.php';
 Debug::enable();
 
-$kernel = new AppMicroKernel('dev', true);
+$kernel = new MicroframeworkAppKernel('dev', true);
 $request = Request::createFromGlobals();
 $response = $kernel->handle($request);
 $response->send();

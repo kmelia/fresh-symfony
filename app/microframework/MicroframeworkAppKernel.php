@@ -5,7 +5,7 @@ use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Routing\RouteCollectionBuilder;
 
-class AppMicroKernel extends AppKernel
+class MicroframeworkAppKernel extends AppKernel
 {
     use MicroKernelTrait;
     
