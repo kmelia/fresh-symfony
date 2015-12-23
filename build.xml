@@ -13,6 +13,10 @@
         <echo level="warning">Available tasks listed below:
         </echo>
         
+        <echo>Fresh Symfony
+        alias.phpunit-run-with-symfony-app-micro-kernel
+        </echo>
+        
         <echo>Phing Launcher
         help.more ....................... provides more help on the tasks groups.
         get-the-classics (gtc) .......... getting the classics configuration,
