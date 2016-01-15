@@ -2,31 +2,107 @@
 <project default="help">
     <import file="phing/composer.xml" />
     <import file="phing/phpunit.xml" />
+    <import file="phing/symfony.xml" />
+    
+    <property name="phpunit.bin-directory" value="bin" />
+    <property name="phpunit.configuration-directory" value="app" />
+    <property name="phpunit.install-target" value="composer.install" />
+    <property name="symfony.bin-directory" value="app" />
     
     <target name="help">
-        <echo>Available tasks listed below:
+        <echo level="warning">Available tasks listed below:
         </echo>
         
-        <echo level="warning">Phing Launcher:</echo>
-        <echo>get-the-classics (or gtc) : getting the classics configuration</echo>
-        <echo>self-update               : self update this script.
+        <echo>Phing Launcher
+        help.more ....................... provides more help on the tasks groups.
+        get-the-classics (gtc) .......... getting the classics configuration,
+        self-update (su) ................ self update this script.
         </echo>
         
-        <echo level="warning">Composer:</echo>
-        <echo>composer.update  : updates the project dependencies with Composer.
-          + see the composer.install description.</echo>
-        <echo>composer.install : installs the project dependencies with Composer.
-          + optionals parameters:
-              [composer.parameters] : add some parameters to the command (default: "")
-              [composer.directory]  : run the command in a specific directory (default: .)
-          + example : ./phing.sh composer.install -Dcomposer.parameters="--no-dev --no-scripts"
+        <echo>Composer
+        composer.update ................. updates the project dependencies with Composer,
+        composer.install ................ installs the project dependencies with Composer.
         </echo>
         
-        <echo level="warning">PHPUnit:</echo>
-        <echo>phpunit.run               : run the PHPUnit tests (for Continuous Integration).</echo>
-        <echo>phpunit.run.no-dependency : run the PHPUnit tests without installing all the dependencies.
+        <echo>PHPUnit
+        phpunit.run ..................... run the PHPUnit tests (for Continuous Integration).
         </echo>
         
-        <echo>Tip no color : phing -logger phing.listener.DefaultLogger</echo>
+        <echo>Symfony
+        symfony.clear-cache ............. clears the application cache for a given environment,
+        symfony.install-assets .......... installs bundle assets into a given directory.
+        symfony.install-assets-symlink .. same as install-assets with symlink instead of a copy.
+        </echo>
+        
+        <echo level="warning">Tips:
+        </echo>
+        
+        <echo>Phing
+        ./phing.sh my.command -logger phing.listener.DefaultLogger .. disable colors,
+        ./phing.sh my.command -Dmy.parameter="my.value" ............. add a parameter.
+        </echo>
+        
+        <echo>Composer
+        install or update without asking for authentication with the environment variable called COMPOSER_GITHUB_OAUTH_TOKEN
+        </echo>
+    </target>
+    
+    <target name="help.more">
+        <phingcall target="help.phing-launcher" />
+        <phingcall target="help.composer" />
+        <phingcall target="help.phpunit" />
+        <phingcall target="help.symfony" />
+    </target>
+    
+    <target name="help.phing-launcher" hidden="true">
+        <echo>Phing Launcher
+        help.more ....................... provides more help on the tasks groups.
+        get-the-classics (gtc) .......... getting the classics configuration,
+        self-update (su) ................ self update this script.
+        </echo>
+    </target>
+    
+    <target name="help.composer" hidden="true">
+        <echo>Composer
+        composer.update ................. updates the project dependencies with Composer,
+        composer.install ................ installs the project dependencies with Composer.
+        </echo>
+        
+        <echo>Optionals parameters
+        [composer.parameters] ........... some parameters to add on the command (default: "")
+        [composer.directory] ............ run in a specific directory (default: .)
+        </echo>
+        
+        <echo level="warning">Example of use
+        ./phing.sh composer.install -Dcomposer.parameters="--no-dev --no-scripts"</echo>
+    </target>
+    
+    <target name="help.phpunit" hidden="true">
+        <echo>PHPUnit
+        phpunit.run ..................... run the PHPUnit tests (for Continuous Integration).
+        </echo>
+        
+        <echo>Optionals parameters
+        [phpunit.parameters] ............ some parameters to add on the command (default: "")
+        </echo>
+        
+        <echo level="warning">Example of use
+        ./phing.sh phpunit.run -Dphpunit.parameters="--testsuite project"</echo>
+    </target>
+    
+    <target name="help.symfony" hidden="true">
+        <echo>Symfony
+        symfony.clear-cache ............. clears the application cache for a given environment,
+        symfony.install-assets .......... installs bundle assets into a given directory,
+        symfony.install-assets-symlink .. same as install-assets with symlink instead of a copy.
+        </echo>
+        
+        <echo>Optionals parameters
+        [symfony.environment] ........... the environment name (default: "dev")
+        [symfony.parameters] ............ some parameters to add on the command (default: "")
+        </echo>
+        
+        <echo level="warning">Example of use
+        ./phing.sh symfony.clear-cache -Dsymfony.environment="prod" -Dsymfony.parameters="--no-warmup"</echo>
     </target>
 </project>
