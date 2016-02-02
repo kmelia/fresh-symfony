@@ -1,4 +1,4 @@
-image: php
+image: phpunit/phpunit
 pipeline:
     - job:
         script:
