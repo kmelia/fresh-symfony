@@ -8,6 +8,9 @@ use Symfony\Component\Process\Process;
 
 class LockingTest extends WebTestCase
 {
+    /**
+     * @group console
+     */
     public function testSleeperCommand()
     {
         // init
@@ -18,7 +21,7 @@ class LockingTest extends WebTestCase
             str_replace(':', '_', $sleeperCommand->getName())
         );
         $commandline = sprintf(
-            'env ./bin/console --env=%s %s',
+            'env bin/console --env=%s %s',
             $this->getClient()->getKernel()->getEnvironment(),
             $sleeperCommand->getName()
         );

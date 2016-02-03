@@ -8,7 +8,7 @@ class AppKernel extends Kernel
     public function registerBundles()
     {
         // symfony standard
-        $bundles = array(
+        $bundles = [
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new Symfony\Bundle\SecurityBundle\SecurityBundle(),
             new Symfony\Bundle\TwigBundle\TwigBundle(),
@@ -17,7 +17,7 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new AppBundle\AppBundle(),
-        );
+        ];
         
         // src
         $bundles[] = new Kmelia\FreshBundle\KmeliaFreshBundle();
@@ -26,7 +26,7 @@ class AppKernel extends Kernel
         //$bundles[] = new Vendor\VendorBundle\VendorVendorBundle();
         
         // development or integration
-        if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {
+        if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
             $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
@@ -43,12 +43,12 @@ class AppKernel extends Kernel
     
     public function getCacheDir()
     {
-        return dirname(__DIR__).'/var/cache/'.$this->getEnvironment();
+        return dirname(__DIR__) . '/var/cache/' . $this->getEnvironment();
     }
     
     public function getLogDir()
     {
-        return dirname(__DIR__).'/var/logs';
+        return dirname(__DIR__) . '/var/logs';
     }
     
     public function registerContainerConfiguration(LoaderInterface $loader)

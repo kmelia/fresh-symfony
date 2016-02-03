@@ -17,4 +17,6 @@ env:
     global:
         - COMPOSER_CACHE_DIR=.composer-cache/
 
-script: ./phing.sh phpunit.run
+script:
+    - ./phing.sh phpunit.run
+    - ./phing.sh alias.phpunit-run-with-symfony-app-micro-kernel

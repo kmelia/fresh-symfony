@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Kmelia\FreshBundle;
+namespace Tests\Kmelia\FreshBundle\Controller;
 
 use Tests\AppBundle\WebTestCase;
 
@@ -47,6 +47,7 @@ class RoutingTest extends WebTestCase
     }
     
     /**
+     * @group security
      * @dataProvider providerTestUnauthorized
      */
     public function testUnauthorized($route)

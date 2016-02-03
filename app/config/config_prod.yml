@@ -1,6 +1,7 @@
 imports:
-    - { resource: "@KmeliaFreshBundle/Resources/config/parameters_prod.yml" }
+    - { resource: ../microframework/config/config_prod.yml }
     - { resource: config.yml }
+    - { resource: "@KmeliaFreshBundle/Resources/config/parameters_prod.yml" }
 
 #framework:
 #    validation:

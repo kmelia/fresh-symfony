@@ -2,13 +2,13 @@
 
 namespace Tests\AppBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Tests\AppBundle\WebTestCase;
 
 class DefaultControllerTest extends WebTestCase
 {
     public function testIndex()
     {
-        $client = static::createClient();
+        $client = $this->getClient();
 
         $crawler = $client->request('GET', '/');
 

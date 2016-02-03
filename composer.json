@@ -5,7 +5,7 @@
     "description": "A fresh symfony for your project",
     "autoload": {
         "psr-4": { "": "src/" },
-        "classmap": [ "app/AppKernel.php", "app/AppCache.php" ]
+        "classmap": [ "app/AppKernel.php", "app/AppCache.php", "app/microframework/MicroframeworkAppKernel.php" ]
     },
     "autoload-dev": {
         "psr-4": { "Tests\\": "tests/" }
