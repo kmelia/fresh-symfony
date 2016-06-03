@@ -6,11 +6,14 @@ use Symfony\Component\HttpFoundation\Response;
 
 class HttpCacheResponseHandler implements ResponseHandler
 {
+    const
+        DEFAULT_DURATION = 300;
+    
     private $duration;
     
     public function __construct()
     {
-        $this->setDuration(300);
+        $this->setDuration(self::DEFAULT_DURATION);
     }
     
     /**
