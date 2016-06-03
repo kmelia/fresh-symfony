@@ -4,10 +4,22 @@ namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use AppBundle\Controller\Handler\SecurityResponseHandler;
 
 abstract class AbstractKmeliaController extends Controller
 {
     private $responseHandlers = array();
+    
+    public function __construct()
+    {
+        $this->loadDefaultResponseHandlers();
+    }
+    
+    protected function loadDefaultResponseHandlers()
+    {
+        // security
+        $this->addResponseHandler(new SecurityResponseHandler());
+    }
     
     protected function addResponseHandler(Handler\ResponseHandler $responseHandler)
     {

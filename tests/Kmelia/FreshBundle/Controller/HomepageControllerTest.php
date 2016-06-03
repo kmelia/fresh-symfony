@@ -23,6 +23,7 @@ class HomepageControllerTest extends WebTestCase
         $this->assertTrue($response->headers->hasCacheControlDirective('s-maxage'), 'Cache control s-maxage');
         $this->assertTrue($response->headers->hasCacheControlDirective('must-revalidate'), 'Cache control must-revalidate');
         $this->assertTrue($response->headers->has('Expires'), 'Header expires');
+        $this->assertTrue($response->headers->contains('X-Frame-Options', 'SAMEORIGIN'), 'Security header');
     }
     
     public function testNoHttpCacheHomepage()

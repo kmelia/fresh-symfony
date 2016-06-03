@@ -9,6 +9,8 @@ abstract class AbstractController extends AbstractKmeliaController
 {
     public function __construct()
     {
+        parent::__construct();
+        
         // add http cache handler
         $this->addResponseHandler(new HttpCacheResponseHandler());
     }
