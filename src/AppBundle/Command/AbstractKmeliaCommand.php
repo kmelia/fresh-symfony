@@ -8,6 +8,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 abstract class AbstractKmeliaCommand extends ContainerAwareCommand
 {
+    const
+        ERROR_EXIT_VALUE = 2;
+    
     private
         $locking,
         $lockResource,
@@ -67,7 +70,7 @@ abstract class AbstractKmeliaCommand extends ContainerAwareCommand
                     $this->getName()
                 ));
                 
-                exit(2);
+                exit(self::ERROR_EXIT_VALUE);
             }
         }
     }
