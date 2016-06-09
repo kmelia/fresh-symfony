@@ -48,7 +48,7 @@ class LockingTest extends WebTestCase
         $this->assertContains('will not be started', $secondProcessOutput, 'Incorrect line 2');
         
         // after the sleeping, the lock is released
-        sleep(SleeperCommand::SLEEPING_TIME / 2);
+        sleep(1 + SleeperCommand::SLEEPING_TIME / 2);
         $this->assertFileNotExists($sleeperCommandLockFilePath);
         $this->assertSame(0, $firstProcess->getExitCode());
         $firstProcessOutput = $firstProcess->getOutput();
