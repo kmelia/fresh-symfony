@@ -9,7 +9,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 class SleeperCommand extends AbstractKmeliaCommand
 {
     const
-        SLEEPING_TIME = 3;
+        SLEEPING_TIME = 4;
     
     protected function configure()
     {
@@ -26,8 +26,14 @@ class SleeperCommand extends AbstractKmeliaCommand
     
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $output->writeln('starting test ...');
-        sleep(self::SLEEPING_TIME);
-        $output->writeln('... test ending');
+        $output->writeln('starting ...');
+        
+        sleep(self::SLEEPING_TIME / 2);
+        
+        $output->writeln('... processing ...');
+        
+        sleep(self::SLEEPING_TIME / 2);
+        
+        $output->writeln('... ending');
     }
 }
