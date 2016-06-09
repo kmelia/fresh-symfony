@@ -43,8 +43,8 @@ class LockingTest extends WebTestCase
         $process->run();
         
         $this->assertSame(2, $process->getExitCode());
-        $this->assertContains('This runtime will not be started', $process->getOutput());
         $this->assertContains('The locking is activated for this command and an instance is already launched', $process->getOutput());
+        $this->assertContains('This runtime will not be started', $process->getOutput());
         
         // after the sleeping, the lock is released
         sleep(SleeperCommand::SLEEPING_TIME);
