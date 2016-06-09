@@ -10,7 +10,8 @@ abstract class AbstractKmeliaCommand extends ContainerAwareCommand
 {
     private
         $locking,
-        $lockResource;
+        $lockResource,
+        $lockMaster;
     
     /**
      * Locking mechanism
@@ -33,6 +34,15 @@ abstract class AbstractKmeliaCommand extends ContainerAwareCommand
     protected function isLockingEnabled()
     {
         if ($this->locking !== true) {
+            return false;
+        }
+        
+        return true;
+    }
+    
+    protected function isLockMaster()
+    {
+        if ($this->lockMaster !== true) {
             return false;
         }
         
@@ -81,6 +91,9 @@ abstract class AbstractKmeliaCommand extends ContainerAwareCommand
         $this->lockResource = fopen($this->getLockFilePath(), 'w+');
         
         if (flock($this->lockResource, LOCK_EX | LOCK_NB)) {
+            // set the lock master
+            $this->lockMaster = true;
+            
             return false;
         }
         
@@ -89,13 +102,15 @@ abstract class AbstractKmeliaCommand extends ContainerAwareCommand
     
     private function releaseLockResource()
     {
-        if (is_resource($this->lockResource)) {
-            // release the lock
-            flock($this->lockResource, LOCK_UN);
-            fclose($this->lockResource);
-            
-            // remove the empty file
-            unlink($this->getLockFilePath());
+        if ($this->isLockMaster()) {
+            if (is_resource($this->lockResource)) {
+                // release the lock
+                flock($this->lockResource, LOCK_UN);
+                fclose($this->lockResource);
+                
+                // remove the empty file
+                unlink($this->getLockFilePath());
+            }
         }
     }
     
