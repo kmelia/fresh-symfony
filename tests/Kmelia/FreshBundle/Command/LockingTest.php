@@ -8,9 +8,6 @@ use Symfony\Component\Process\Process;
 
 class LockingTest extends WebTestCase
 {
-    const
-        WAITING_TIME = 2;
-    
     /**
      * @group console
      */
@@ -37,7 +34,7 @@ class LockingTest extends WebTestCase
         $firstProcess->start();
         
         // check the creation of the lock file
-        sleep(self::WAITING_TIME);
+        sleep(SleeperCommand::SLEEPING_TIME / 2);
         $this->assertTrue($firstProcess->isRunning(), sprintf('The command %s does not work', $firstProcess->getCommandLine()));
         $this->assertFileExists($sleeperCommandLockFilePath);
         
@@ -51,7 +48,7 @@ class LockingTest extends WebTestCase
         $this->assertContains('will not be started', $secondProcessOutput, 'Incorrect line 2');
         
         // after the sleeping, the lock is released
-        sleep(SleeperCommand::SLEEPING_TIME - self::WAITING_TIME);
+        sleep(SleeperCommand::SLEEPING_TIME / 2);
         $this->assertFileNotExists($sleeperCommandLockFilePath);
         $this->assertSame(0, $firstProcess->getExitCode());
         $firstProcessOutput = $firstProcess->getOutput();
