@@ -9,7 +9,8 @@ class HttpCacheResponseHandler implements ResponseHandler
     const
         DEFAULT_DURATION = 300;
     
-    private $duration;
+    private
+        $duration;
     
     public function __construct()
     {
@@ -51,10 +52,18 @@ class HttpCacheResponseHandler implements ResponseHandler
         return $response;
     }
     
+    /**
+     * @param int $duration duration in seconds (0 is not allowed)
+     * @throws \LogicException
+     */
     public function setDuration($duration)
     {
         if (!is_int($duration)) {
             throw new \LogicException('duration have to be an integer');
+        }
+        
+        if ($duration === 0) {
+            throw new \LogicException('duration have to be greater than zero');
         }
         
         $this->duration = $duration;
