@@ -3,6 +3,11 @@ homepage:
     defaults: { _controller: "KmeliaFreshBundle:Homepage:homepage" }
     methods:  [GET]
 
+one_second_http_cache_homepage:
+    path: /one-second-http-cache
+    defaults: { _controller: "KmeliaFreshBundle:Homepage:oneSecondHttpCacheHomepage" }
+    methods:  [GET]
+
 no_http_cache_homepage:
     path: /no-http-cache
     defaults: { _controller: "KmeliaFreshBundle:Homepage:noHttpCacheHomepage" }

@@ -21,9 +21,22 @@ class HomepageControllerTest extends WebTestCase
         $this->assertTrue($response->headers->contains('Content-Type', 'text/html; charset=UTF-8'), 'Html utf-8 page');
         $this->assertTrue($response->headers->hasCacheControlDirective('max-age'), 'Cache control max-age');
         $this->assertTrue($response->headers->hasCacheControlDirective('s-maxage'), 'Cache control s-maxage');
+        $this->assertSame('300', $response->headers->getCacheControlDirective('max-age'), 'Invalid duration');
         $this->assertTrue($response->headers->hasCacheControlDirective('must-revalidate'), 'Cache control must-revalidate');
         $this->assertTrue($response->headers->has('Expires'), 'Header expires');
         $this->assertTrue($response->headers->contains('X-Frame-Options', 'SAMEORIGIN'), 'Security header');
+    }
+    
+    public function testOneSecondHttpCacheHomepage()
+    {
+        $client = $this->getClient();
+        
+        $crawler  = $client->request('GET', '/one-second-http-cache');
+        $response = $client->getResponse();
+        
+        // headers
+        $this->assertTrue($response->isOk(), 'Http code 200');
+        $this->assertSame('1', $response->headers->getCacheControlDirective('max-age'), 'Invalid duration');
     }
     
     public function testNoHttpCacheHomepage()
