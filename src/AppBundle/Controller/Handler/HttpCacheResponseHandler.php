@@ -24,7 +24,7 @@ class HttpCacheResponseHandler implements ResponseHandler
     public function handleResponse(Response $response)
     {
         // do not handle invalid response
-        if (! $response->isOk()) {
+        if (!$response->isOk()) {
             return $response;
         }
         
@@ -53,7 +53,7 @@ class HttpCacheResponseHandler implements ResponseHandler
     
     public function setDuration($duration)
     {
-        if (! is_int($duration)) {
+        if (!is_int($duration)) {
             throw new \LogicException('duration have to be an integer');
         }
         
