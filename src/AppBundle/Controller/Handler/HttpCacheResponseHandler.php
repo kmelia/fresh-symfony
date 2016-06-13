@@ -35,8 +35,8 @@ class HttpCacheResponseHandler extends AbstractResponseHandler implements Respon
             return $response;
         }
         
-        // @see src/Kmelia/FreshBundle/Resources/config/routing.yml
-        $this->readDurationFromRouting();
+        // seek for optional configuration
+        $this->readRoutingConfiguration();
         
         // mark the response as private
         $response->setPrivate();
@@ -73,16 +73,32 @@ class HttpCacheResponseHandler extends AbstractResponseHandler implements Respon
         $this->duration = $duration;
     }
     
-    private function readDurationFromRouting()
+    /**
+     * @see src/Kmelia/FreshBundle/Resources/config/routing.yml
+     */
+    private function readRoutingConfiguration()
     {
-        if ($this->duration !== self::DEFAULT_DURATION) {
-            return null;
-        }
-        
         if (!$this->request instanceof Request) {
             return null;
         }
         
-        $this->setDuration($this->request->get('http_cache_duration', self::DEFAULT_DURATION));
+        // read routing configuration
+        $routingConfiguration = $this->request->get('response_handler');
+        
+        // override when it's a default duration or when you have specified override
+        if ($this->hasDefaultDuration() || !empty($routingConfiguration['override'])) {
+            if (!empty($routingConfiguration['http_cache_duration'])) {
+                $this->setDuration($routingConfiguration['http_cache_duration']);
+            }
+        }
+    }
+    
+    private function hasDefaultDuration()
+    {
+        if ($this->duration !== self::DEFAULT_DURATION) {
+            return false;
+        }
+        
+        return true;
     }
 }

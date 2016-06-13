@@ -34,8 +34,10 @@ class HomepageControllerTest extends WebTestCase
     {
         return array(
             array('/', 300),
-            array('/http-cache-from-routing', 1),
-            array('/http-cache-from-controller', 2),
+            array('/routing-http-cache', 1),
+            array('/specified-http-cache', 2),
+            array('/specified-http-cache-and-routing-configuration', 2),
+            array('/specified-http-cache-and-routing-configuration-override', 4),
         );
     }
     

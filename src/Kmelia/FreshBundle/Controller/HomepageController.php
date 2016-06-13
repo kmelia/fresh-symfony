@@ -6,17 +6,12 @@ use AppBundle\Controller\Handler\HttpCacheResponseHandler;
 
 class HomepageController extends AbstractController
 {
-    public function homepageAction()
+    public function defaultHttpCacheAction()
     {
         return $this->render('KmeliaFreshBundle:Homepage:homepage.html.twig');
     }
     
-    public function httpCacheFromRoutingHomepageAction()
-    {
-        return $this->render('KmeliaFreshBundle:Homepage:homepage.html.twig');
-    }
-    
-    public function httpCacheFromControllerHomepageAction()
+    public function specifiedHttpCacheAction()
     {
         $this->getHttpCacheResponseHandler()->setDuration(2);
         
