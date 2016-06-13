@@ -26,17 +26,10 @@ class LockingTest extends WebTestCase
             $sleeperCommand->getName()
         );
         
-        // the lock does not exists
-        $this->assertFileNotExists($sleeperCommandLockFilePath);
-        
         // the first run of this command with the locking mechanism: the lock is created
         $firstProcess = new Process($commandline);
         $firstProcess->start();
-        
-        // check the creation of the lock file
         sleep(SleeperCommand::SLEEPING_TIME / 2);
-        $this->assertTrue($firstProcess->isRunning(), sprintf('The command %s does not work', $firstProcess->getCommandLine()));
-        $this->assertFileExists($sleeperCommandLockFilePath);
         
         // the second run of this command is invalid
         $secondProcess = new Process($commandline);
@@ -47,9 +40,11 @@ class LockingTest extends WebTestCase
         $this->assertContains('locking is activated', $secondProcessOutput, 'Incorrect line 1');
         $this->assertContains('will not be started', $secondProcessOutput, 'Incorrect line 2');
         
+        // check the first process is still running
+        $this->assertTrue($firstProcess->isRunning(), sprintf('The command %s does not work', $firstProcess->getCommandLine()));
+        
         // after the sleeping, the lock is released
         sleep(1 + SleeperCommand::SLEEPING_TIME / 2);
-        $this->assertFileNotExists($sleeperCommandLockFilePath);
         $this->assertSame(0, $firstProcess->getExitCode());
         $firstProcessOutput = $firstProcess->getOutput();
         $this->assertSame(3, substr_count($firstProcessOutput, PHP_EOL), 'There is more than three lines');
@@ -61,6 +56,5 @@ class LockingTest extends WebTestCase
         $thirdProcess = new Process($commandline);
         $thirdProcess->run();
         $this->assertSame(0, $thirdProcess->getExitCode());
-        $this->assertFileNotExists($sleeperCommandLockFilePath);
     }
 }
