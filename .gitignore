@@ -16,6 +16,7 @@
 /web/bundles/
 
 /composer.phar
+/deptrac.phar
 /.project
 /.buildpath
 /auth.json
