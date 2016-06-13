@@ -3,8 +3,9 @@
 namespace AppBundle\Controller\Handler;
 
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 
-class HttpCacheResponseHandler implements ResponseHandler
+class HttpCacheResponseHandler extends AbstractResponseHandler implements ResponseHandler
 {
     const
         DEFAULT_DURATION = 300;
@@ -33,6 +34,9 @@ class HttpCacheResponseHandler implements ResponseHandler
         if ($response->isCacheable()) {
             return $response;
         }
+        
+        // @see src/Kmelia/FreshBundle/Resources/config/routing.yml
+        $this->readDurationFromRouting();
         
         // mark the response as private
         $response->setPrivate();
@@ -67,5 +71,18 @@ class HttpCacheResponseHandler implements ResponseHandler
         }
         
         $this->duration = $duration;
+    }
+    
+    private function readDurationFromRouting()
+    {
+        if ($this->duration !== self::DEFAULT_DURATION) {
+            return null;
+        }
+        
+        if (!$this->request instanceof Request) {
+            return null;
+        }
+        
+        $this->setDuration($this->request->get('http_cache_duration', self::DEFAULT_DURATION));
     }
 }

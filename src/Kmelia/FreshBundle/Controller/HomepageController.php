@@ -11,9 +11,14 @@ class HomepageController extends AbstractController
         return $this->render('KmeliaFreshBundle:Homepage:homepage.html.twig');
     }
     
-    public function oneSecondHttpCacheHomepageAction()
+    public function httpCacheFromRoutingHomepageAction()
     {
-        $this->getHttpCacheResponseHandler()->setDuration(1);
+        return $this->render('KmeliaFreshBundle:Homepage:homepage.html.twig');
+    }
+    
+    public function httpCacheFromControllerHomepageAction()
+    {
+        $this->getHttpCacheResponseHandler()->setDuration(2);
         
         return $this->render('KmeliaFreshBundle:Homepage:homepage.html.twig');
     }

@@ -4,7 +4,7 @@ namespace AppBundle\Controller\Handler;
 
 use Symfony\Component\HttpFoundation\Response;
 
-class SecurityResponseHandler implements ResponseHandler
+class SecurityResponseHandler extends AbstractResponseHandler implements ResponseHandler
 {
     /**
      * Add security headers response
