@@ -66,7 +66,7 @@ abstract class AbstractKmeliaCommand extends ContainerAwareCommand
         }
         
         // Warning: do not use a local variable, the lock will be released immediately
-        $this->lockHandler = new LockHandler($this->getName(), $this->getContainer()->get('kernel')->getCacheDir());
+        $this->lockHandler = new LockHandler($this->getName());
         return !$this->lockHandler->lock();
     }
 }
