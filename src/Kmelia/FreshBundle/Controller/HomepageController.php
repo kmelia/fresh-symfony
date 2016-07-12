@@ -8,14 +8,14 @@ class HomepageController extends AbstractController
 {
     public function defaultHttpCacheAction()
     {
-        return $this->render('KmeliaFreshBundle:Homepage:homepage.html.twig');
+        return $this->render('KmeliaFreshBundle:Homepage:home.html.twig');
     }
     
     public function specifiedHttpCacheAction()
     {
         $this->getHttpCacheResponseHandler()->setDuration(2);
         
-        return $this->render('KmeliaFreshBundle:Homepage:homepage.html.twig');
+        return $this->render('KmeliaFreshBundle:Homepage:home.html.twig');
     }
     
     public function noHttpCacheHomepageAction()
@@ -23,6 +23,6 @@ class HomepageController extends AbstractController
         // remove http cache handler
         $this->removeResponseHandlers(new HttpCacheResponseHandler());
         
-        return $this->render('KmeliaFreshBundle:Homepage:homepage.html.twig');
+        return $this->render('KmeliaFreshBundle:Homepage:home.html.twig');
     }
 }
