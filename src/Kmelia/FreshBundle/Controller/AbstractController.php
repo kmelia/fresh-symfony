@@ -5,11 +5,13 @@ namespace Kmelia\FreshBundle\Controller;
 use AppBundle\Controller\AbstractKmeliaController;
 use AppBundle\Controller\Handler\HttpCacheResponseHandler;
 use Symfony\Component\HttpFoundation\Response;
+use Doctrine\ORM\EntityRepository;
 
 abstract class AbstractController extends AbstractKmeliaController
 {
-    protected
-        $httpCacheResponseHandler;
+    private
+        $httpCacheResponseHandler,
+        $doctrineRepositories;
     
     public function __construct()
     {
@@ -37,5 +39,14 @@ abstract class AbstractController extends AbstractKmeliaController
         }
         
         return $this->httpCacheResponseHandler;
+    }
+    
+    protected function getDoctrineRepository($name)
+    {
+        if (empty($this->doctrineRepositories[$name]) || !$this->doctrineRepositories[$name] instanceof EntityRepository) {
+            $this->doctrineRepositories[$name] = $this->getDoctrine()->getRepository($name);
+        }
+        
+        return $this->doctrineRepositories[$name];
     }
 }
