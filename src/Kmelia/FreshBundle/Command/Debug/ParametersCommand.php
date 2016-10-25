@@ -21,7 +21,7 @@ class ParametersCommand extends AbstractKmeliaCommand
         $this
             ->enableLocking()
             ->setName('kmelia:debug:parameters')
-            ->setDescription('Debug the parameters per environment')
+            ->setDescription('Debug the parameters per environment without launching it!')
             ->addArgument('environments', InputArgument::REQUIRED, 'List separate by comma')
             ->addOption('filter', 'f', InputOption::VALUE_OPTIONAL, 'Filter the parameters with this regexp');
     }
