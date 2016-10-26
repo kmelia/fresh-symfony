@@ -24,11 +24,14 @@
         "symfony/phpunit-bridge": "~2.7"
     },
     "scripts": {
-        "post-install-cmd": [
+        "symfony-scripts": [
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap"
         ],
+        "post-install-cmd": [
+            "@symfony-scripts"
+        ],
         "post-update-cmd": [
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap"
+            "@symfony-scripts"
         ]
     },
     "config": {
