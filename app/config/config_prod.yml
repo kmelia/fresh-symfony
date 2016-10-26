@@ -3,12 +3,6 @@ imports:
     - { resource: config.yml }
     - { resource: "@KmeliaFreshBundle/Resources/config/parameters_prod.yml" }
 
-#framework:
-#    validation:
-#        cache: validator.mapping.cache.doctrine.apc
-#    serializer:
-#        cache: serializer.mapping.cache.apc
-
 #doctrine:
 #    orm:
 #        metadata_cache_driver: apc
