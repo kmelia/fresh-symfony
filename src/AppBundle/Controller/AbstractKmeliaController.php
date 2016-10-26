@@ -4,10 +4,35 @@ namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\RequestStack;
+use AppBundle\Controller\Handler\SecurityResponseHandler;
 
 abstract class AbstractKmeliaController extends Controller
 {
-    private $responseHandlers = array();
+    private
+        $requestStack,
+        $responseHandlers = array();
+    
+    public function __construct()
+    {
+        // loads default
+        $this->loadDefaultResponseHandlers();
+    }
+    
+    /**
+     * inject the request_stack service
+     * @param RequestStack $requestStack
+     */
+    protected function setRequestStack(RequestStack $requestStack)
+    {
+        $this->requestStack = $requestStack;
+    }
+    
+    protected function loadDefaultResponseHandlers()
+    {
+        // security
+        $this->addResponseHandler(new SecurityResponseHandler());
+    }
     
     protected function addResponseHandler(Handler\ResponseHandler $responseHandler)
     {
@@ -34,7 +59,18 @@ abstract class AbstractKmeliaController extends Controller
     {
         $response = parent::render($view, $parameters, $response);
         
+        // get current request via the request_stack service
+        $currentRequest = null;
+        if ($this->requestStack instanceof RequestStack) {
+            $currentRequest = $this->requestStack->getCurrentRequest();
+        }
+        
         foreach ($this->responseHandlers as $responseHandler) {
+            if ($currentRequest !== null) {
+                // give the current request to each response handler
+                $responseHandler->setCurrentRequest($currentRequest);
+            }
+            
             $response = $responseHandler->handleResponse($response);
         }
         

@@ -42,7 +42,7 @@ To run the unit tests:
   [2]: https://bitbucket.org/kmelia/fresh-symfony/get/master.tar.gz "Latest stable release of Fresh Symfony"
   [3]: https://github.com/symfony/symfony-standard/tree/3.0 "The Symfony Standard Edition 3.0 release"
   [4]: https://symfony.com/roadmap "Symfony roadmap"
-  [5]: https://phpunit.de/manual/current/en/ "The PHPUnit 4.8 release"
+  [5]: https://phpunit.de/manual/current/en/ "The PHPUnit stable release"
   [6]: https://symfony.com/doc/current/book/testing.html "Symfony documentation"
   [7]: https://bitbucket.org/kmelia/fresh-symfony/src/master/CONFIGURE.md "Fresh Symfony documentation"
   [8]: https://bitbucket.org/kmelia/fresh-symfony/src/release/2.3_LTS/README.md "Fresh Symfony 2.3 LTS"

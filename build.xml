@@ -2,6 +2,7 @@
 <project default="help">
     <import file="phing/alias.xml" />
     <import file="phing/composer.xml" />
+    <import file="phing/deptrac.xml" />
     <import file="phing/phpunit.xml" />
     <import file="phing/symfony.xml" />
     
@@ -18,7 +19,7 @@
         </echo>
         
         <echo>Phing Launcher
-        help.more ....................... provides more help on the tasks groups.
+        help.more ....................... provides more help on the tasks groups,
         get-the-classics (gtc) .......... getting the classics configuration,
         self-update (su) ................ self update this script.
         </echo>
@@ -34,8 +35,13 @@
         
         <echo>Symfony
         symfony.clear-cache ............. clears the application cache for a given environment,
-        symfony.install-assets .......... installs bundle assets into a given directory.
-        symfony.install-assets-symlink .. same as install-assets with symlink instead of a copy.
+        symfony.install-assets .......... installs bundle assets into a given directory,
+        symfony.install-assets-symlink .. same as install-assets with symlink instead of a copy,
+        symfony.search-environments ..... search all the available symfony environments.
+        </echo>
+        
+        <echo>Deptrac
+        deptrac.analyze ................. analyze the source.
         </echo>
         
         <echo level="warning">Tips:
@@ -60,7 +66,7 @@
     
     <target name="help.phing-launcher" hidden="true">
         <echo>Phing Launcher
-        help.more ....................... provides more help on the tasks groups.
+        help.more ....................... provides more help on the tasks groups,
         get-the-classics (gtc) .......... getting the classics configuration,
         self-update (su) ................ self update this script.
         </echo>
@@ -75,6 +81,10 @@
         <echo>Optionals parameters
         [composer.parameters] ........... some parameters to add on the command (default: "")
         [composer.directory] ............ run in a specific directory (default: .)
+        </echo>
+        
+        <echo>Tips
+        install or update without asking for authentication with the environment variable called COMPOSER_GITHUB_OAUTH_TOKEN
         </echo>
         
         <echo level="warning">Example of use
@@ -98,7 +108,8 @@
         <echo>Symfony
         symfony.clear-cache ............. clears the application cache for a given environment,
         symfony.install-assets .......... installs bundle assets into a given directory,
-        symfony.install-assets-symlink .. same as install-assets with symlink instead of a copy.
+        symfony.install-assets-symlink .. same as install-assets with symlink instead of a copy,
+        symfony.search-environments ..... search all the available symfony environments.
         </echo>
         
         <echo>Optionals parameters

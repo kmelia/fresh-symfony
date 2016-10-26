@@ -1,9 +1,9 @@
 <?php
 
-use Symfony\Component\HttpKernel\Kernel;
+use Kmelia\FreshBundle\AbstractKernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
-class AppKernel extends Kernel
+class AppKernel extends AbstractKernel
 {
     public function registerBundles()
     {

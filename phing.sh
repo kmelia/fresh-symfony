@@ -85,6 +85,15 @@ then
         rm $phing
     fi
     
+    if [ -s $temporaryPhing ]
+    then
+        if ! php $temporaryPhing > /dev/null
+        then
+            showMessage "removing invalid file $temporaryPhing (broken phar)"
+            rm $temporaryPhing
+        fi
+    fi
+    
     if [ ! -s $temporaryPhing ]
     then
         showMessage "downloading $temporaryPhing from origin"
@@ -124,6 +133,7 @@ then
     curl -sS -O $repositoryUrl/raw/master/build.xml \
         && cd $configurationDirectory \
         && curl -sS -O $repositoryUrl/raw/master/$configurationDirectory/composer.xml \
+        && curl -sS -O $repositoryUrl/raw/master/$configurationDirectory/deptrac.xml \
         && curl -sS -O $repositoryUrl/raw/master/$configurationDirectory/phing.xml \
         && curl -sS -O $repositoryUrl/raw/master/$configurationDirectory/phpunit.xml \
         && curl -sS -O $repositoryUrl/raw/master/$configurationDirectory/symfony.xml \

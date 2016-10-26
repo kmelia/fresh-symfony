@@ -32,7 +32,7 @@ class MicroframeworkAppKernel extends AppKernel
     
     public function getCacheDir()
     {
-        return dirname(dirname(__DIR__)).'/var/cache/microframework'.$this->getEnvironment();
+        return dirname(dirname(__DIR__)) . '/var/cache/microframework' . $this->getEnvironment();
     }
     
     protected function configureContainer(ContainerBuilder $containerBuilder, LoaderInterface $loader)
