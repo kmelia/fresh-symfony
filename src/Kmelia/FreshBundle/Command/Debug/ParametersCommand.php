@@ -12,6 +12,9 @@ use Symfony\Component\Console\Helper\TableSeparator;
 
 class ParametersCommand extends AbstractKmeliaCommand
 {
+    const
+        CONSOLE_WIDTH = 90;
+    
     private
         $input,
         $output;
@@ -23,7 +26,8 @@ class ParametersCommand extends AbstractKmeliaCommand
             ->setName('kmelia:debug:parameters')
             ->setDescription('Debug the parameters per environment without launching it!')
             ->addArgument('environments', InputArgument::REQUIRED, 'List separate by comma')
-            ->addOption('filter', 'f', InputOption::VALUE_OPTIONAL, 'Filter the parameters with this regexp');
+            ->addOption('filter', 'f', InputOption::VALUE_OPTIONAL, 'Filter the parameters with this regexp')
+            ->addOption('expand', 'x', InputOption::VALUE_NONE, 'Expand all the truncated values');
     }
     
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -31,7 +35,9 @@ class ParametersCommand extends AbstractKmeliaCommand
         $environments = explode(',', $input->getArgument('environments'));
         
         $table = (new Table($output))
-            ->setHeaders(['env', 'key', 'value']);
+            ->setHeaders(['env', 'key', 'type', 'value']);
+        
+        $isTruncated = false;
         
         foreach ($environments as $key => $environment) {
             if ($key > 0) {
@@ -53,12 +59,30 @@ class ParametersCommand extends AbstractKmeliaCommand
                     }
                 }
                 
+                $type = gettype($value);
+                
                 if (is_array($value)) {
                     $value = json_encode($value);
                 }
                 
-                $table->addRow([$environment, $parameter, $value]);
+                if ($input->getOption('expand') === false && strlen($value) >= self::CONSOLE_WIDTH) {
+                    $showMoreMessage = ' [truncated]';
+                    
+                    $value = sprintf(
+                        '%s%s',
+                        substr(substr($value, 0, self::CONSOLE_WIDTH), 0, - strlen($showMoreMessage)),
+                        $showMoreMessage
+                    );
+                    
+                    $isTruncated = true;
+                }
+                
+                $table->addRow([$environment, $parameter, $type, $value]);
             }
+        }
+        
+        if ($isTruncated) {
+            $table->setColumnWidths([0, 0, 0, self::CONSOLE_WIDTH]);
         }
         
         $table->render();
