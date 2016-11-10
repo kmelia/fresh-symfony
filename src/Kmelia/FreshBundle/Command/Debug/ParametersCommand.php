@@ -16,7 +16,7 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 class ParametersCommand extends AbstractKmeliaCommand
 {
     const
-        CONSOLE_WIDTH            = 65,
+        CONSOLE_WIDTH            = 70,
         SHOW_HEADER_AFTER_N_ROWS = 20;
     
     private
@@ -40,7 +40,7 @@ class ParametersCommand extends AbstractKmeliaCommand
         
         // initialize
         $isTruncated  = false;
-        $headers      = ['env', 'root node', 'key (node)', 'type', 'value'];
+        $headers      = ['env', 'root node', 'key (node)', 'value'];
         $numberOfRows = 0;
         
         $table = (new Table($output))
@@ -97,11 +97,7 @@ class ParametersCommand extends AbstractKmeliaCommand
                         }
                     }
                     
-                    $type = substr(strtolower(gettype($value)), 0, 4);
-                    
-                    if (is_array($value)) {
-                        $value = json_encode($value);
-                    }
+                    $value = $this->renderValue($value);
                     
                     if ($input->getOption('expand') === false && strlen($value) >= self::CONSOLE_WIDTH) {
                         $showMoreMessage = ' [truncated]';
@@ -115,16 +111,46 @@ class ParametersCommand extends AbstractKmeliaCommand
                         $isTruncated = true;
                     }
                     
-                    $table->addRow([$environmentName, $rootNode, $key, $type, $value]);
+                    $table->addRow([$environmentName, $rootNode, $key, $value]);
                     $numberOfRows++;
                 }
             }
         }
         
         if ($isTruncated) {
-            $table->setColumnWidths([0, 0, 0, 0, self::CONSOLE_WIDTH]);
+            $table->setColumnWidths([0, 0, 0, self::CONSOLE_WIDTH]);
         }
         
         $table->render();
+    }
+    
+    private function renderValue($value)
+    {
+        if (is_array($value)) {
+            return json_encode($value);
+        }
+        
+        if (is_bool($value)) {
+            return $this->renderBoolValue($value);
+        }
+        
+        if (is_null($value)) {
+            return 'NULL  (null)';
+        }
+        
+        return $value;
+    }
+    
+    private function renderBoolValue($value)
+    {
+        $stringValue = 'false';
+        if ($value === true) {
+            $stringValue = 'true ';
+        }
+        
+        return sprintf(
+            '%s (boolean)',
+            $stringValue
+        );
     }
 }
