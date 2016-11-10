@@ -9,11 +9,15 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Helper\TableSeparator;
+use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
+use Symfony\Component\Config\Definition\Processor;
+use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 class ParametersCommand extends AbstractKmeliaCommand
 {
     const
-        CONSOLE_WIDTH = 90;
+        CONSOLE_WIDTH            = 65,
+        SHOW_HEADER_AFTER_N_ROWS = 20;
     
     private
         $input,
@@ -34,55 +38,91 @@ class ParametersCommand extends AbstractKmeliaCommand
     {
         $environments = explode(',', $input->getArgument('environments'));
         
+        // initialize
+        $isTruncated  = false;
+        $headers      = ['env', 'root node', 'key (node)', 'type', 'value'];
+        $numberOfRows = 0;
+        
         $table = (new Table($output))
-            ->setHeaders(['env', 'key', 'type', 'value']);
+            ->setHeaders($headers);
         
-        $isTruncated = false;
-        
-        foreach ($environments as $key => $environment) {
-            if ($key > 0) {
+        foreach ($environments as $environmentKey => $environmentName) {
+            if ($environmentKey > 0) {
                 $table->addRow(new TableSeparator());
+                
+                if ($numberOfRows > self::SHOW_HEADER_AFTER_N_ROWS) {
+                    $table->addRow($headers);
+                    $table->addRow(new TableSeparator());
+                }
             }
             
-            $environmentKernel = new \AppKernel($environment, false);
-            $environmentKernel->initializeWithoutCaching();
+            // reset for each environment
+            $numberOfRows = 0;
             
-            foreach ($environmentKernel->getContainer()->getParameterBag()->all() as $parameter => $value) {
-                if ($input->getOption('filter') !== null) {
-                    $pattern = sprintf(
-                        '~%s~',
-                        $input->getOption('filter')
-                    );
+            // kernel and container
+            $environmentKernel = new \AppKernel($environmentName, false);
+            $environmentKernel->initializeWithoutCaching();
+            $environmentContainer = $environmentKernel->getContainer();
+            
+            // symfony parameters
+            $configurations = [
+                'parameters' => $environmentContainer->getParameterBag()->all(),
+            ];
+            
+            // bundle configurations
+            foreach ($environmentKernel->getBundles() as $bundle) {
+                $extension = $bundle->getContainerExtension();
+                
+                if ($extension instanceof ExtensionInterface) {
+                    $configs       = $environmentContainer->getExtensionConfig($extension->getAlias());
+                    $configuration = $extension->getConfiguration($configs, $environmentContainer);
                     
-                    if (!preg_match($pattern, $parameter)) {
-                        continue;
+                    if ($configuration instanceof ConfigurationInterface) {
+                        $configurations[$extension->getAlias()] = (new Processor())
+                            ->processConfiguration($configuration, $environmentContainer->getParameterBag()->resolveValue($configs));
                     }
                 }
-                
-                $type = gettype($value);
-                
-                if (is_array($value)) {
-                    $value = json_encode($value);
-                }
-                
-                if ($input->getOption('expand') === false && strlen($value) >= self::CONSOLE_WIDTH) {
-                    $showMoreMessage = ' [truncated]';
+            }
+            
+            foreach ($configurations as $rootNode => $nodeConfigurations) {
+                foreach ($nodeConfigurations as $key => $value) {
+                    if ($input->getOption('filter') !== null) {
+                        $pattern = sprintf(
+                            '~%s~',
+                            $input->getOption('filter')
+                        );
+                        
+                        if (!preg_match($pattern, $key) && !preg_match($pattern, $rootNode)) {
+                            continue;
+                        }
+                    }
                     
-                    $value = sprintf(
-                        '%s%s',
-                        substr(substr($value, 0, self::CONSOLE_WIDTH), 0, - strlen($showMoreMessage)),
-                        $showMoreMessage
-                    );
+                    $type = substr(strtolower(gettype($value)), 0, 4);
                     
-                    $isTruncated = true;
+                    if (is_array($value)) {
+                        $value = json_encode($value);
+                    }
+                    
+                    if ($input->getOption('expand') === false && strlen($value) >= self::CONSOLE_WIDTH) {
+                        $showMoreMessage = ' [truncated]';
+                        
+                        $value = sprintf(
+                            '%s%s',
+                            substr(substr($value, 0, self::CONSOLE_WIDTH), 0, - strlen($showMoreMessage)),
+                            $showMoreMessage
+                        );
+                        
+                        $isTruncated = true;
+                    }
+                    
+                    $table->addRow([$environmentName, $rootNode, $key, $type, $value]);
+                    $numberOfRows++;
                 }
-                
-                $table->addRow([$environment, $parameter, $type, $value]);
             }
         }
         
         if ($isTruncated) {
-            $table->setColumnWidths([0, 0, 0, self::CONSOLE_WIDTH]);
+            $table->setColumnWidths([0, 0, 0, 0, self::CONSOLE_WIDTH]);
         }
         
         $table->render();
