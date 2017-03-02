@@ -17,6 +17,7 @@
 
 /composer.phar
 /deptrac.phar
+/.idea/
 /.project
 /.buildpath
 /auth.json

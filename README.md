@@ -13,7 +13,7 @@ You can also find *other available releases* of the application:
 
 Getting started
 ---------------
-**1.** Download the [**latest stable release** [tar.gz]][2] inherited from [Symfony 3.0][3].
+**1.** Download the [**latest stable release** [tar.gz]][2] inherited from [Symfony 3.1][3].
 
 **2.** Then, run the following commands:
 ```bash
@@ -40,7 +40,7 @@ To run the unit tests:
 
   [1]: https://bitbucket.org/kmelia/fresh-symfony "Fresh Symfony"
   [2]: https://bitbucket.org/kmelia/fresh-symfony/get/master.tar.gz "Latest stable release of Fresh Symfony"
-  [3]: https://github.com/symfony/symfony-standard/tree/3.0 "The Symfony Standard Edition 3.0 release"
+  [3]: https://github.com/symfony/symfony-standard/tree/3.1 "The Symfony Standard Edition 3.1 release"
   [4]: https://symfony.com/roadmap "Symfony roadmap"
   [5]: https://phpunit.de/manual/current/en/ "The PHPUnit stable release"
   [6]: https://symfony.com/doc/current/book/testing.html "Symfony documentation"

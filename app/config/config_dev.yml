@@ -28,4 +28,4 @@ monolog:
         #    level:  info
 
 swiftmailer:
-    delivery_address: %swiftmailer.delivery_address%
+    delivery_address: "%swiftmailer.delivery_address%"

@@ -9,9 +9,16 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Helper\TableSeparator;
+use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
+use Symfony\Component\Config\Definition\Processor;
+use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 class ParametersCommand extends AbstractKmeliaCommand
 {
+    const
+        CONSOLE_WIDTH            = 70,
+        SHOW_HEADER_AFTER_N_ROWS = 20;
+    
     private
         $input,
         $output;
@@ -23,44 +30,127 @@ class ParametersCommand extends AbstractKmeliaCommand
             ->setName('kmelia:debug:parameters')
             ->setDescription('Debug the parameters per environment without launching it!')
             ->addArgument('environments', InputArgument::REQUIRED, 'List separate by comma')
-            ->addOption('filter', 'f', InputOption::VALUE_OPTIONAL, 'Filter the parameters with this regexp');
+            ->addOption('filter', 'f', InputOption::VALUE_OPTIONAL, 'Filter the parameters with this regexp')
+            ->addOption('expand', 'x', InputOption::VALUE_NONE, 'Expand all the truncated values');
     }
     
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $environments = explode(',', $input->getArgument('environments'));
         
-        $table = (new Table($output))
-            ->setHeaders(['env', 'key', 'value']);
+        // initialize
+        $isTruncated  = false;
+        $headers      = ['env', 'root node', 'key (node)', 'value'];
+        $numberOfRows = 0;
         
-        foreach ($environments as $key => $environment) {
-            if ($key > 0) {
+        $table = (new Table($output))
+            ->setHeaders($headers);
+        
+        foreach ($environments as $environmentKey => $environmentName) {
+            if ($environmentKey > 0) {
                 $table->addRow(new TableSeparator());
+                
+                if ($numberOfRows > self::SHOW_HEADER_AFTER_N_ROWS) {
+                    $table->addRow($headers);
+                    $table->addRow(new TableSeparator());
+                }
             }
             
-            $environmentKernel = new \AppKernel($environment, false);
-            $environmentKernel->initializeWithoutCaching();
+            // reset for each environment
+            $numberOfRows = 0;
             
-            foreach ($environmentKernel->getContainer()->getParameterBag()->all() as $parameter => $value) {
-                if ($input->getOption('filter') !== null) {
-                    $pattern = sprintf(
-                        '~%s~',
-                        $input->getOption('filter')
-                    );
+            // kernel and container
+            $environmentKernel = new \AppKernel($environmentName, false);
+            $environmentKernel->initializeWithoutCaching();
+            $environmentContainer = $environmentKernel->getContainer();
+            
+            // symfony parameters
+            $configurations = [
+                'parameters' => $environmentContainer->getParameterBag()->all(),
+            ];
+            
+            // bundle configurations
+            foreach ($environmentKernel->getBundles() as $bundle) {
+                $extension = $bundle->getContainerExtension();
+                
+                if ($extension instanceof ExtensionInterface) {
+                    $configs       = $environmentContainer->getExtensionConfig($extension->getAlias());
+                    $configuration = $extension->getConfiguration($configs, $environmentContainer);
                     
-                    if (!preg_match($pattern, $parameter)) {
-                        continue;
+                    if ($configuration instanceof ConfigurationInterface) {
+                        $configurations[$extension->getAlias()] = (new Processor())
+                            ->processConfiguration($configuration, $environmentContainer->getParameterBag()->resolveValue($configs));
                     }
                 }
-                
-                if (is_array($value)) {
-                    $value = json_encode($value);
+            }
+            
+            foreach ($configurations as $rootNode => $nodeConfigurations) {
+                foreach ($nodeConfigurations as $key => $value) {
+                    if ($input->getOption('filter') !== null) {
+                        $pattern = sprintf(
+                            '~%s~',
+                            $input->getOption('filter')
+                        );
+                        
+                        if (!preg_match($pattern, $key) && !preg_match($pattern, $rootNode)) {
+                            continue;
+                        }
+                    }
+                    
+                    $value = $this->renderValue($value);
+                    
+                    if ($input->getOption('expand') === false && strlen($value) >= self::CONSOLE_WIDTH) {
+                        $showMoreMessage = ' [truncated]';
+                        
+                        $value = sprintf(
+                            '%s%s',
+                            substr(substr($value, 0, self::CONSOLE_WIDTH), 0, - strlen($showMoreMessage)),
+                            $showMoreMessage
+                        );
+                        
+                        $isTruncated = true;
+                    }
+                    
+                    $table->addRow([$environmentName, $rootNode, $key, $value]);
+                    $numberOfRows++;
                 }
-                
-                $table->addRow([$environment, $parameter, $value]);
             }
         }
         
+        if ($isTruncated) {
+            $table->setColumnWidths([0, 0, 0, self::CONSOLE_WIDTH]);
+        }
+        
         $table->render();
+    }
+    
+    private function renderValue($value)
+    {
+        if (is_array($value)) {
+            return json_encode($value);
+        }
+        
+        if (is_bool($value)) {
+            return $this->renderBoolValue($value);
+        }
+        
+        if (is_null($value)) {
+            return 'NULL  (null)';
+        }
+        
+        return $value;
+    }
+    
+    private function renderBoolValue($value)
+    {
+        $stringValue = 'false';
+        if ($value === true) {
+            $stringValue = 'true ';
+        }
+        
+        return sprintf(
+            '%s (boolean)',
+            $stringValue
+        );
     }
 }
