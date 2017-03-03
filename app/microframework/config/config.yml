@@ -5,7 +5,7 @@ parameters:
     secret: SeriouslyYouHaveToChangeIt!
 
 framework:
-    secret: "%secret%"
+    secret: '%secret%'
     templating:
         engines: ['twig']
         #assets_version: SomeVersionScheme
@@ -13,5 +13,5 @@ framework:
 
 # Twig Configuration
 twig:
-    debug:            "%kernel.debug%"
-    strict_variables: true
+    debug: '%kernel.debug%'
+    strict_variables: '%kernel.debug%'
