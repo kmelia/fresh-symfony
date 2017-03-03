@@ -13,7 +13,7 @@ You can also find *other available releases* of the application:
 
 Getting started
 ---------------
-**1.** Download the [**latest stable release** [tar.gz]][2] inherited from [Symfony 3.2][3].
+**1.** Download or clone the [**latest stable release** [tar.gz]][2] inherited from [Symfony 3.2][3].
 
 **2.** Then, run the following commands:
 ```bash
@@ -30,7 +30,7 @@ Executing Unit tests
 
 The application embeds the [PHPUnit][5] testing framework on the development environment.
 
-Follow the [Symfony documentation][6] to create your unit test or copy/paste one of the samples into your bundle at `tests/<YourName>/<YourBundleName>/`.
+Follow the [Symfony documentation][6] to create your unit test or copy/paste one of the samples into your bundle at `tests/<Project>/<Bundle>/`.
 
 To run the unit tests:
 ```bash
