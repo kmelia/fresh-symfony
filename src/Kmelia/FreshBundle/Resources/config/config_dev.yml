@@ -1,0 +1,6 @@
+imports:
+    - { resource: config.yml }
+
+# Set parameters here for the development target of the app
+parameters:
+    swiftmailer.delivery_address: me@example.com

@@ -1,4 +1,4 @@
-# Set parameters here for the development target of the app
+# Set parameters of the app
 parameters:
     database_driver:   pdo_mysql
     database_host:     ~
@@ -6,5 +6,8 @@ parameters:
     database_name:     ~
     database_user:     ~
     database_password: ~
-    
-    swiftmailer.delivery_address: me@example.com
+
+    mailer_transport: mail
+    mailer_host:      ~
+    mailer_user:      ~
+    mailer_password:  ~
