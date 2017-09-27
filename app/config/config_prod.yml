@@ -1,7 +1,7 @@
 imports:
     - { resource: ../microframework/config/config_prod.yml }
     - { resource: config.yml }
-    - { resource: "@KmeliaFreshBundle/Resources/config/parameters_prod.yml" }
+    - { resource: "@KmeliaFreshBundle/Resources/config/config_prod.yml" }
 
 #doctrine:
 #    orm:
@@ -12,12 +12,13 @@ imports:
 monolog:
     handlers:
         main:
-            type:         fingers_crossed
+            type: fingers_crossed
             action_level: error
-            handler:      nested
+            handler: nested
         nested:
-            type:  stream
-            path:  "%kernel.logs_dir%/%kernel.environment%.log"
+            type: stream
+            path: '%kernel.logs_dir%/%kernel.environment%.log'
             level: debug
         console:
-            type:  console
+            type: console
+            process_psr_3_messages: false

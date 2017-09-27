@@ -47,11 +47,11 @@ class HomepageControllerTest extends WebTestCase
         
         $client->request('GET', '/no-http-cache');
         $response = $client->getResponse();
-        
+
         // headers
         $this->assertTrue($response->isOk(), 'Http code 200');
         $this->assertFalse($response->isCacheable(), 'Response cacheable');
-        $this->assertTrue($response->headers->contains('Cache-Control', 'no-cache'), 'Header cache control no-cache');
+        $this->assertTrue($response->headers->contains('Cache-Control', 'no-cache, private'), 'Header cache control no-cache, private');
         $this->assertFalse($response->headers->has('Expires'), 'Header expires');
     }
 }
