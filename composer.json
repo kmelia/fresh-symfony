@@ -4,7 +4,12 @@
     "type": "project",
     "description": "A fresh symfony for your project",
     "autoload": {
-        "psr-4": { "": "src/" }
+        "psr-4": {
+            "AppBundle\\": "src/AppBundle"
+        }
+    },
+    "autoload-dev": {
+        "files": [ "vendor/symfony/symfony/src/Symfony/Component/VarDumper/Resources/functions/dump.php" ]
     },
     "require": {
         "php": ">=5.5",
