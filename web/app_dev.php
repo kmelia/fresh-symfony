@@ -17,11 +17,13 @@ if (getenv('ALLOW_APP_DEV') !== 'true') {
     }
 }
 
-require __DIR__.'/../app/autoload.php';
+require __DIR__.'/../vendor/autoload.php';
 Debug::enable();
 
 $kernel = new AppKernel('dev', true);
-$kernel->loadClassCache();
+if (PHP_VERSION_ID < 70000) {
+    $kernel->loadClassCache();
+}
 $request = Request::createFromGlobals();
 $response = $kernel->handle($request);
 $response->send();
