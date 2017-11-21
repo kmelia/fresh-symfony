@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 // This check prevents access to debug front controllers that are deployed by accident to production servers.
 // Feel free to remove this, extend it, or make something more sophisticated.
-if (getenv('ALLOW_APP_DEV') !== 'true') {
+if (getenv('APP_DEV') !== 'true') {
     if (!isset($_SERVER['REMOTE_ADDR']) || !preg_match('~^((127|10)\.0\.0\.[0-9]+|(fe80)?::1)$~', $_SERVER['REMOTE_ADDR']) || PHP_SAPI === 'cli-server') {
         header('HTTP/1.0 403 Forbidden');
         exit('You are not allowed to access this file. Check '.basename(__FILE__).' for more information.');

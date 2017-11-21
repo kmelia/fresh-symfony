@@ -1,0 +1,33 @@
+version: '2'
+services:
+  database:
+    image: mariadb:10.3
+    volumes:
+      - database_data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=maria
+      - MYSQL_DATABASE=symfony_local
+      - MYSQL_USER=kmelia
+      - MYSQL_PASSWORD=kmelia
+  app:
+    build:
+      context: ./docker/
+    volumes:
+      - .:/var/www/html/
+    ports:
+      - "8080:80"
+    environment:
+      - APP_DEV=true
+      - APP_DATABASE_NAME=symfony_local
+      - APP_DATABASE_USER=kmelia
+      - APP_DATABASE_PASSWORD=kmelia
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    links:
+      - database:db
+    ports:
+      - "8081:80"
+    environment:
+      - MYSQL_ROOT_PASSWORD=maria
+volumes:
+  database_data:
