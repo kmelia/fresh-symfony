@@ -6,5 +6,4 @@ framework:
 
 web_profiler:
     toolbar: true
-    position: top
     intercept_redirects: false
