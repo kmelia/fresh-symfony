@@ -1,6 +1,7 @@
 <?php
 
 use Kmelia\FreshBundle\AbstractKernel;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
 class AppKernel extends AbstractKernel
@@ -57,6 +58,12 @@ class AppKernel extends AbstractKernel
     
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
+        $loader->load(function (ContainerBuilder $container) {
+            $container->setParameter('container.autowiring.strict_mode', true);
+            $container->setParameter('container.dumper.inline_class_loader', true);
+
+            $container->addObjectResource($this);
+        });
         $loader->load(sprintf(
             '%s/config/config_%s.yml',
             $this->getRootDir(),
