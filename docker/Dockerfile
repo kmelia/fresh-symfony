@@ -7,6 +7,7 @@ RUN apt-get update
 RUN apt-get install -y libcurl3 libcurl3-dev
 RUN apt-get install -y libpng12-dev libjpeg-dev
 RUN apt-get install -y libicu-dev
+RUN apt-get install -y zip
 
 # php extensions
 RUN docker-php-ext-install -j$(nproc) pdo pdo_mysql mysqli
