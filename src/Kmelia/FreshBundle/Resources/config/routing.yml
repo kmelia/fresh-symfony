@@ -36,6 +36,12 @@ no_http_cache_homepage:
     defaults: { _controller: "KmeliaFreshBundle:Homepage:noHttpCacheHomepage" }
     methods:  [GET]
 
+no_http_cache_homepage_with_default_render:
+    path: /no-http-cache-with-default-render
+    defaults: { _controller: "KmeliaFreshBundle:Homepage:noHttpCacheWithDefaultRenderHomepage" }
+    methods:  [GET]
+
+
 secured_area:
     path: /secured-area
     defaults: { _controller: "KmeliaFreshBundle:Homepage:defaultHttpCache" }

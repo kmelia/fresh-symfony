@@ -3,12 +3,15 @@
 namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\ControllerTrait;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RequestStack;
 use AppBundle\Controller\Handler\SecurityResponseHandler;
 
 abstract class AbstractKmeliaController extends Controller
 {
+    use ControllerTrait;
+
     private
         $requestStack,
         $responseHandlers = array();
@@ -55,9 +58,9 @@ abstract class AbstractKmeliaController extends Controller
      * Renders a view with an handled Reponse
      * @see \Symfony\Bundle\FrameworkBundle\Controller\Controller::render()
      */
-    public function render($view, array $parameters = array(), Response $response = null)
+    public function renderHandledReponse($view, array $parameters = array(), Response $response = null)
     {
-        $response = parent::render($view, $parameters, $response);
+        $response = $this->render($view, $parameters, $response);
         
         // get current request via the request_stack service
         $currentRequest = null;
