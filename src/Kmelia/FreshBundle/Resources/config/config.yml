@@ -1,11 +1,11 @@
 # Set parameters of the app
 parameters:
     database_driver:   pdo_mysql
-    database_host:     ~
+    database_host:     'database'
     database_port:     ~
-    database_name:     ~
-    database_user:     ~
-    database_password: ~
+    database_name:     '%env(APP_DATABASE_NAME)%'
+    database_user:     '%env(APP_DATABASE_USER)%'
+    database_password: '%env(APP_DATABASE_PASSWORD)%'
 
     mailer_transport: mail
     mailer_host:      ~
