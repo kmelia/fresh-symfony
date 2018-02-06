@@ -10,8 +10,13 @@ framework:
 
 doctrine:
     dbal:
-        driver: "pdo_sqlite"
-        path:   "%kernel.root_dir%/../tests/database.db3"
+        driver:   "pdo_sqlite"
+        host:     ~
+        port:     ~
+        dbname:   ~
+        user:     ~
+        password: ~
+        path:     "%kernel.root_dir%/../tests/database.db3"
 
 web_profiler:
     toolbar: false
