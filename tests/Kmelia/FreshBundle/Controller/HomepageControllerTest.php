@@ -40,12 +40,15 @@ class HomepageControllerTest extends WebTestCase
             array('/specified-http-cache-and-routing-configuration-override', 4),
         );
     }
-    
-    public function testNoHttpCacheHomepage()
+
+    /**
+     * @dataProvider providerTestNoHttpCacheHomepage
+     */
+    public function testNoHttpCacheHomepage($route)
     {
         $client = $this->getClient();
         
-        $client->request('GET', '/no-http-cache');
+        $client->request('GET', $route);
         $response = $client->getResponse();
 
         // headers
@@ -53,5 +56,13 @@ class HomepageControllerTest extends WebTestCase
         $this->assertFalse($response->isCacheable(), 'Response cacheable');
         $this->assertTrue($response->headers->contains('Cache-Control', 'no-cache, private'), 'Header cache control no-cache, private');
         $this->assertFalse($response->headers->has('Expires'), 'Header expires');
+    }
+
+    public function providerTestNoHttpCacheHomepage()
+    {
+        return array(
+            array('/no-http-cache'),
+            array('/no-http-cache-with-default-render'),
+        );
     }
 }
